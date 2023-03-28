@@ -15,6 +15,7 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
+//Devtools Component will be inserted below App after importing hook/package
 render(() => 
 <QueryClientProvider client={queryClient}>
   <App />
