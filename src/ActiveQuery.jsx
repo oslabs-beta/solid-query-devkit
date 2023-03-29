@@ -6,7 +6,8 @@ import QueryExplorer from "./QueryExplorer";
 export default function ActiveQuery()   {
 
     return (
-        <div>
+        <div id="activeQuery">
+            <h1>Active Query Content Box</h1>
             <OverviewData />
             <DataExplorer />
             <QueryExplorer />

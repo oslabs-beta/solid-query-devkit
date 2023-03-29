@@ -7,6 +7,63 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.modal {
+  background-color: rgb(13, 21, 32);
+  min-height: 25vh;
+  overflow-y: hidden;
+  position: fixed;
+  width: 100vw;
+  border: solid white;
+  inset: 50vh 0 0 0;
+  z-index: var(--layer5);
+  resize: vertical;
+  display: flex;
+  flex-direction: column;
+}
+
+.outerContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .leftContainer  {
+} */
+
+.rightContainer {
+  width: 50vw;
+}
+
+header  {
+  background-color: rgb(23, 35, 53);
+  color: white;
+  padding: 15px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul {
+  display: flex;
+  align-items: baseline;
+  list-style-type: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.statusGrid {
+  display: flex;
+  flex-direction: row;
+}
+
+#activeQuery {
+  background-color: red;
+  display: flex;
+  justify-content: flex-end;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
