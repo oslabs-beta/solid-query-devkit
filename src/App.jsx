@@ -4,8 +4,7 @@ import styles from './App.module.css';
 import { QueryClient, QueryClientProvider, createQuery, QueryCache, useQueryClient } from '@tanstack/solid-query'
 import { For, useContext } from 'solid-js';
 import PokeName from './PokeName';
-import { ObjectComponent } from './JSONComponents/ObjectComponent';
-import { Header } from './Header'
+import SolidQueryDevtools from './SolidQueryDevtools';
 
 
 
@@ -37,6 +36,7 @@ function App() {
         <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
           }
       </For>
+      <SolidQueryDevtools />
     </>
      
   
