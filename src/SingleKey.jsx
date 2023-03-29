@@ -1,8 +1,10 @@
-export default function SingleKey()   {
+export default function SingleKey(props)   {
+  console.log('SingleKey props: ', props);
 
-    return (
-        <div></div>
-
-    )
-
-}
+  return (
+    <div>
+      <span>{props.numOfObservers}</span>
+      <span>{props.queryHash}</span>
+    </div>
+  );
+};
