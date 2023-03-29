@@ -1,7 +1,12 @@
 export default function OverviewData()   {
 
     return (
-        <div></div>
+        <>
+           <div class="detailsHeader">
+                <h3>Query Details</h3>
+            </div>
+            <div class="queryDetailsData"></div>
+        </>
 
     )
 
