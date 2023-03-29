@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import styles from './App.module.css';
-
+import { ObjectComponent } from './JSONComponents/ObjectComponent';
 import { QueryClient, QueryClientProvider, createQuery, QueryCache, useQueryClient } from '@tanstack/solid-query'
 import { For, useContext } from 'solid-js';
 import PokeName from './PokeName';
@@ -29,7 +29,6 @@ function App() {
 
   return (
     <>
-    <Header name={'Data Explorer'} />
     <ObjectComponent obj={testObj} key={"testObj"} level={0} />
      <For each={query.data}>
          {(pokemon, i) =>
