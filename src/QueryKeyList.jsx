@@ -3,6 +3,10 @@
 // include some conditional logic there to ensure that all props are properly 
 // captured and passed to the <SingleKey> components
 
+// ALSO: Ideally the data() passed into <For> will automatically update any time
+// the corresponding resource is updated (currently once per second), but this 
+// isn't working yet.
+
 import SingleKey from './SingleKey';
 import { useQueryClient } from '@tanstack/solid-query';
 import { For, createSignal, createResource, Show, Suspense } from 'solid-js';
