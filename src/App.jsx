@@ -17,14 +17,12 @@ function App() {
 
   return (
     <>
-     <For each={query.data}>
-         {(pokemon, i) => 
-        <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
-          }
+      <For each={query.data}>
+        {(pokemon, i) => 
+          <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
+        }
       </For>
     </>
-     
-  
   );
 }
 

@@ -1,8 +1,7 @@
-export default function SingleKey()   {
+export default function SingleKey(props)   {
+    console.log('SingleKey props: ', props);
 
     return (
-        <div></div>
-
+        <div>HEY!</div>
     )
-
 }

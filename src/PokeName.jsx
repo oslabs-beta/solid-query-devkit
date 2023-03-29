@@ -3,7 +3,7 @@ import { createSignal } from 'solid-js'
 
 export default function PokeName(props) {
   const queryClient = useQueryClient()
-  console.log(queryClient.getQueryCache())
+  // console.log(queryClient.getQueryCache())
 
   const [enabled, setEnabled] = createSignal(false)
 
