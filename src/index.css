@@ -31,9 +31,12 @@ body {
 
 .rightContainer {
   width: 50vw;
+  height: 100vh;
+  border-left: solid rgba(33 39 55) 2px;
+ 
 }
 
-header  {
+header {
   background-color: rgb(23, 35, 53);
   color: white;
   padding: 15px;
@@ -56,13 +59,100 @@ header nav ul {
 .statusGrid {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+#fresh {
+  color: white;
+  background-color: green;
+  margin-right: 10px;
+}
+
+#fresh:disabled {
+  color: rgba(88 92 109);
+  background-color: rgba(16 66 52);
+  margin-right: 10px;
+}
+
+#fetching {
+  color: white;
+  background-color: rgba(45 105 246);
+  margin-right: 10px;
+}
+
+#fetching:disabled {
+  color: rgba(88 92 109);
+  background-color: rgba(36 35 103);
+  margin-right: 10px;
+}
+
+#stale {
+  color: white;
+  background-color: yellow;
+  margin-right: 10px;
+}
+
+#stale:disabled {
+  color: rgba(88 92 109);
+  background-color: rgb(203, 153, 14);
+  margin-right: 10px;
+}
+
+#inactive {
+  color: white;
+  color: gray;
+  margin-right: 10px;
+}
+
+#inactive:disabled {
+  color: rgba(88 92 109);
+  background-color: rgba(31 38 57);
+  margin-right: 10px;
 }
 
 #activeQuery {
-  background-color: red;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  color: white;
 }
+
+.detailsHeader {
+  background-color: rgb(23, 35, 53);
+  color: white;
+}
+
+.queryDetailsContent {
+  padding: 10px;
+
+}
+
+.queryActionsHeader {
+  background-color: rgb(23, 35, 53);
+  color: white;
+}
+
+.queryActionsButtons {
+  padding: 10px;
+}
+
+#refetch {
+  background-color: rgba(45 105 246);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+}
+
+#remove {
+  background-color: rgba(234 51 132);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5px;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

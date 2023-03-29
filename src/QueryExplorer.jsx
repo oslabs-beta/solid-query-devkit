@@ -1,8 +1,9 @@
-export default function QueryExplorer()   {
+export default function QueryExplorer() {
 
     return (
-        <div></div>
-
+        <div class="detailsHeader">
+            <h3>Query Explorer</h3>
+        </div>
     )
 
 }

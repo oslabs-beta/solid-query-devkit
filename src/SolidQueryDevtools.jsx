@@ -47,12 +47,10 @@ export default function SolidQueryDevtools(props) {
                                         <h1 class="queries">Queries(1)</h1>
 
                                             <nav class="statusGrid">
-                                                <ul>
-                                                    <li class="fresh">fresh</li>
-                                                    <li class="fetching">fetching</li>
-                                                    <li class="stale">stale</li>
-                                                    <li class="inactive">inactive</li>
-                                                </ul>
+                                                    <button id="fresh" disabled>fresh</button>
+                                                    <button id="fetching" disabled>fetching</button>
+                                                    <button id="stale" disabled>stale</button>
+                                                    <button id="inactive" disabled>inactive</button>
                                             </nav>
 
                                         <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>

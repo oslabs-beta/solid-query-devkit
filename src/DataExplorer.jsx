@@ -1,7 +1,9 @@
 export default function DataExplorer()   {
 
     return (
-        <div></div>
+        <div class="detailsHeader">
+            <h3>Data Explorer</h3>
+        </div>
 
     )
 
