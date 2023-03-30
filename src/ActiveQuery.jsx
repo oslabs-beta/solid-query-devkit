@@ -1,10 +1,13 @@
 import OverviewData from "./OverviewData";
 import DataExplorer from "./DataExplorer";
 import QueryExplorer from "./QueryExplorer";
+import { useContext } from "solid-js";
+import { QueryContext } from "./QueryContext";
 
 
 export default function ActiveQuery()   {
-
+    const {count, setCount} = useContext(QueryContext)
+    console.log(count)
     return (
         <>
             <div id="activeQuery">
@@ -15,7 +18,10 @@ export default function ActiveQuery()   {
                     <h3>Actions</h3>
                 </div>
                 <div class="queryActionsButtons">
-                    <button id="refetch">Refetch</button>
+                    <button id="refetch" onClick={() => {
+                        setCount((count() + 1))
+                        console.log(count())
+                    } }>Refetch</button>
                     <button id="remove">Remove</button>
                 </div>
             </section>
