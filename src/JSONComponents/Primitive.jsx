@@ -1,3 +1,8 @@
+import { useContext } from "solid-js";
+import { QueryContext } from "../QueryContext";
+
+
+
 const style = {
   color: 'rgba(170, 170, 170, 0.851)'
 }
@@ -9,6 +14,7 @@ const falsey = {
 }
 const Boolean = (props) =>  {
   const boolean = props.value ? 'true' : 'false'
+  const {count, setCount} = useContext(QueryContext);
   return (
     <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>{boolean}</span></div>
   )

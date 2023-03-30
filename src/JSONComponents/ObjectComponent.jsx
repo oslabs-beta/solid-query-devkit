@@ -10,7 +10,7 @@ export function ObjectComponent(props) {
 
   return (
     <>
-    <div style = { `margin-left: ${props.level * 15}px; color: rgba(170, 170, 170, 0.851); cursor: pointer; width: fit-content;`} >
+    <div style = { `margin-left: ${props.level * 15}px; color: white; cursor: pointer; width: fit-content;`} >
       <span onClick={() => setEnabled(!enabled())}>
         <span style={'font-weight: bold'}>{!enabled() ? '\u25B6' : '\u25BC'} {props.key} </span>
         <Show when={!enabled()}>

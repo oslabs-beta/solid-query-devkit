@@ -12,16 +12,7 @@ import { useQueryClient } from '@tanstack/solid-query';
 import { For, createSignal, onMount } from 'solid-js';
 
 export default function QueryKeyList (props)   {
-
-  // create a queries signal
-  const [ queries, setQueries ] = createSignal([]);
-
-  // onMount, fetch the queries and use setQueries to update the appropriate signal
-  onMount(async () => {
-    const queryClient = useQueryClient();
-    const newQueries = await queryClient.getQueryCache().queries;
-    setQueries(newQueries);
-  })
+  const queryClient = useQueryClient();
 
   return (
     <div>

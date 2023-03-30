@@ -9,21 +9,23 @@ body {
 
 .modal {
   background-color: rgb(13, 21, 32);
+  height: 100%;
   min-height: 25vh;
-  overflow-y: hidden;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   border: solid white;
   inset: 50vh 0 0 0;
   z-index: var(--layer5);
   resize: vertical;
   display: flex;
   flex-direction: column;
+  /* overflow-y: scroll; */
 }
 
 .outerContainer {
   display: flex;
   flex-direction: row;
+  height: 50%;
 }
 
 /* .leftContainer  {
@@ -31,9 +33,9 @@ body {
 
 .rightContainer {
   width: 50vw;
-  height: 100vh;
+  height: 99%;
   border-left: solid rgba(33 39 55) 2px;
- 
+  overflow-y: auto;
 }
 
 header {
@@ -67,6 +69,7 @@ header nav ul {
   color: white;
   background-color: green;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 #fresh:disabled {
@@ -79,6 +82,7 @@ header nav ul {
   color: white;
   background-color: rgba(45 105 246);
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 #fetching:disabled {
@@ -91,6 +95,7 @@ header nav ul {
   color: white;
   background-color: yellow;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 #stale:disabled {
@@ -103,6 +108,7 @@ header nav ul {
   color: white;
   color: gray;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 #inactive:disabled {

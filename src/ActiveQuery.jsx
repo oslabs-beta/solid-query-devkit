@@ -1,10 +1,13 @@
 import OverviewData from "./OverviewData";
 import DataExplorer from "./DataExplorer";
 import QueryExplorer from "./QueryExplorer";
+import { useContext } from "solid-js";
+import { QueryContext } from "./QueryContext";
 
 
 export default function ActiveQuery()   {
-
+    const {count, setCount} = useContext(QueryContext)
+    console.log(count)
     return (
         <>
             <div id="activeQuery">
