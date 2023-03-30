@@ -16,7 +16,7 @@ const Boolean = (props) =>  {
   const boolean = props.value ? 'true' : 'false'
   const {count, setCount} = useContext(QueryContext);
   return (
-    <div style={`margin-left: ${props.level * 15}px`} onClick={() => setCount((count() + 1))}><span style={style}>{props.key}: </span><span style={truthy}>{boolean}</span></div>
+    <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>{boolean}</span></div>
   )
 }
 const Number = (props) =>  {

@@ -18,10 +18,7 @@ export default function ActiveQuery()   {
                     <h3>Actions</h3>
                 </div>
                 <div class="queryActionsButtons">
-                    <button id="refetch" onClick={() => {
-                        setCount((count() + 1))
-                        console.log(count())
-                    } }>Refetch</button>
+                    <button id="refetch">Refetch</button>
                     <button id="remove">Remove</button>
                 </div>
             </section>
