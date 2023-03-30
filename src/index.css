@@ -21,6 +21,17 @@ body {
   flex-direction: column;
 }
 
+#showModal  {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+}
+
+#showModal:hover{
+  background-color: rgba(27 78 98);
+  border-radius: 45px;
+}
+
 .outerContainer {
   display: flex;
   flex-direction: row;

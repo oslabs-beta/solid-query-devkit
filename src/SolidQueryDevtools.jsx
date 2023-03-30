@@ -3,7 +3,7 @@ import ActiveQuery from "./ActiveQuery";
 import { createSignal, createEffect, Match } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 
-export default function SolidQueryDevtools(props) {
+export default function Modal(props) {
 
   const [showModal, setShowModal] = createSignal(false);
   const [showData, setShowData] = createSignal(false);
@@ -16,15 +16,13 @@ export default function SolidQueryDevtools(props) {
 
   createEffect(() => {
     //if Modal is open and Query Content is being shown, change the style width to be 50vw
-    if (showData() === true && showModal() === true)   {
+    if (showData() === true && showModal() === true) {
       setViewWidth('50vw');
     }
-    if (showData() === false && showModal() === true)   {
+    if (showData() === false && showModal() === true) {
       setViewWidth('100vw');
     }
   });
-
-  console.log('this is the show modal', showModal);
 
   //we will eventually need an "X" button to close the modal which will setShowModal to false once more 
   return (
@@ -63,12 +61,12 @@ export default function SolidQueryDevtools(props) {
                     <ActiveQuery />
                   </section>
                 </div>
-                </Show>
+              </Show>
             </div>
           </section>
         </Match>
         <Match when={showModal() === false}>
-          <button id="showModal" class="toggle" onclick={() => setShowModal(true)}>Open Modal</button>
+          <button id="showModal" class="toggle" onclick={() => setShowModal(true)}><img src={logo} width='45pxvw' height='45px'></img></button>
         </Match>
       </Switch>
     </>
@@ -77,67 +75,3 @@ export default function SolidQueryDevtools(props) {
 
 
 
-
-
-
-// return (
-//     <section>
-//         <Switch>
-
-//             <Match when={showModal() === true}>
-
-//                 <section class="modal">
-//                    
-//                         <header>
-
-//                             <h1 class="queries">Queries</h1>
-
-//                                 <nav class="statusGrid">
-//                                     <ul>
-//                                         <li class="fresh">fresh</li>
-//                                         <li class="fetching">fetching</li>
-//                                         <li class="stale">stale</li>
-//                                         <li class="inactive">inactive</li>
-//                                     </ul>
-//                                 </nav>
-
-//                             <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
-
-//                         </header>
-
-//                         {/* <QueryKeyList /> */}
-
-//                             <Show
-//                                 when={showData() === true}
-//                                 fallback={
-//                                     <section class="main">
-//                                         <button id="showAQ" onclick={() => setShowData(!showData())}>Query 1</button>
-//                                         <button>Query 2</button>
-//                                         <button>Query 3</button>
-//                                     </section>
-//                                 }
-//                             >
-
-//                             <button id="showAQ" onclick={() => setShowData(!showData())}>Show Active Query</button>
-
-//                             <section class="sideBar">
-//                                 <ActiveQuery />
-//                             </section>
-
-
-//                         </Show>
-              
-//                 </section>
-
-//             </Match>
-
-//             <Match when={showModal() === false}>
-
-//                 <button id="showModal" class="toggle" onclick={() => setShowModal(true)}>Open Modal</button>
-
-//             </Match>
-
-//         </Switch>
-//     </section>
-// )
-// }
