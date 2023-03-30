@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider, createQuery, QueryCache, useQueryClie
 import { For, useContext } from 'solid-js';
 import PokeName from './PokeName';
 import SolidQueryDevtools from './SolidQueryDevtools';
+import { QueryProvider } from "./QueryContext";
 
 
 
@@ -35,7 +36,10 @@ function App() {
         <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
           }
       </For>
-      <SolidQueryDevtools />
+      <QueryProvider>
+        <SolidQueryDevtools />
+      </QueryProvider>
+     
     </>
   );
 }

@@ -20,6 +20,5 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 render(() => 
 <QueryClientProvider client={queryClient}>
   <App />
-  <SolidQueryDevtools />
 </QueryClientProvider>,
  root);
