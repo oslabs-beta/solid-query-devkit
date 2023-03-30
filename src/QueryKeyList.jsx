@@ -9,7 +9,7 @@
 
 import SingleKey from './SingleKey';
 import { useQueryClient } from '@tanstack/solid-query';
-import { For, createSignal, createResource, Show, Suspense, onMount } from 'solid-js';
+import { For, createSignal, onMount } from 'solid-js';
 
 export default function QueryKeyList (props)   {
 
