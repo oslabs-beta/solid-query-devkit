@@ -6,47 +6,53 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .modal {
   background-color: rgb(13, 21, 32);
   height: 100%;
   min-height: 25vh;
   position: fixed;
   width: 100%;
-  border: solid white;
   inset: 50vh 0 0 0;
   z-index: var(--layer5);
   resize: vertical;
   display: flex;
-  flex-direction: column;
+  border-style: none;
+  border-top: solid rgba(5,5,50,0.645);
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+
+  /* flex-direction: column; */
   /* overflow-y: scroll; */
 }
-
 #showModal  {
   background-color: Transparent;
   background-repeat:no-repeat;
   border: none;
-}
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  top: 0%;
+  right: 0%;
 
+}
 #showModal:hover{
   background-color: rgba(27 78 98);
   border-radius: 45px;
 }
-
 .outerContainer {
   display: flex;
   flex-direction: row;
   height: 50%;
 }
 
-/* .leftContainer  {
-} */
+.leftContainer  {
+  overflow: scroll;
+}
 
 .rightContainer {
   width: 50vw;
   height: 99%;
   border-left: solid rgba(33 39 55) 2px;
-  overflow-y: auto;
+  overflow: scroll;
 }
 
 header {
@@ -57,102 +63,84 @@ header {
   display: flex;
   justify-content: space-between;
 }
-
 header nav ul {
   display: flex;
   align-items: baseline;
   list-style-type: none;
 }
-
 .wrapper {
   display: flex;
   flex-direction: row;
 }
-
 .statusGrid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
 }
-
 #fresh {
   color: white;
   background-color: green;
   margin-right: 10px;
   border-radius: 5px;
 }
-
 #fresh:disabled {
   color: rgba(88 92 109);
   background-color: rgba(16 66 52);
   margin-right: 10px;
 }
-
 #fetching {
   color: white;
   background-color: rgba(45 105 246);
   margin-right: 10px;
   border-radius: 5px;
 }
-
 #fetching:disabled {
   color: rgba(88 92 109);
   background-color: rgba(36 35 103);
   margin-right: 10px;
 }
-
 #stale {
   color: white;
   background-color: yellow;
   margin-right: 10px;
   border-radius: 5px;
 }
-
 #stale:disabled {
   color: rgba(88 92 109);
   background-color: rgb(203, 153, 14);
   margin-right: 10px;
 }
-
 #inactive {
   color: white;
   color: gray;
   margin-right: 10px;
   border-radius: 5px;
 }
-
 #inactive:disabled {
   color: rgba(88 92 109);
   background-color: rgba(31 38 57);
   margin-right: 10px;
 }
-
 #activeQuery {
   display: flex;
   flex-direction: column;
   color: white;
 }
-
 .detailsHeader {
   background-color: rgb(23, 35, 53);
   color: white;
 }
-
 .queryDetailsContent {
   padding: 10px;
-
 }
-
 .queryActionsHeader {
   background-color: rgb(23, 35, 53);
   color: white;
 }
-
 .queryActionsButtons {
   padding: 10px;
 }
-
 #refetch {
   background-color: rgba(45 105 246);
   color: white;
@@ -170,6 +158,33 @@ header nav ul {
   margin-left: 5px;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.queryKey {
+  display: flex;
+}
+
+.observers {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(241 179 62);
+  width: 5vw;
+  height: 5vh;
+  color: black;
+  align-items: center;
+  border: solid black 1px;
+}
+
+#singleKey  {
+  background-color: rgb(13, 21, 32, .8);
+  width: 100vw;
+  border: solid rgba(33 39 55) 1px;
+  display: flex;
+  align-items: center;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

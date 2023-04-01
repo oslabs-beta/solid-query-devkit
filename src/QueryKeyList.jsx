@@ -15,31 +15,16 @@ import { useQueryClient } from "@tanstack/solid-query";
 export default function QueryKeyList (props)   {
 
  const {queries, setQueries} = useContext(QueryContext)
- // const {status, setStatus} = useContext(QueryContext)
-
- const test = setInterval((() => console.log(queries[1].state.status)), 500)
-
- 
+ const {status, setStatus} = useContext(QueryContext)
 
   return (
     <div>
       {/* For each query, render a SingleKey component, passing down the necessary information from the query cache as props */}
-      <For each={queries}>
-        {(query, index) => {
-          console.log('query', query)
-          const queryKey = query.queryKey;
-          const numOfObservers = query.observers.length;
-          const queryClient = useQueryClient();
-          const [status, setStatus] = createSignal(queryClient.queryCache.queries[index()].state.status);
-          queryClient.queryCache.subscribe(() => {
-            setStatus(() => queryClient.queryCache.queries[index()].state.status)
-            console.log('query status:', status());
-          });
+      <For each={queries()}>
+        {(query, i) => {
           return <SingleKey
-            queryKey={queryKey}
-            numOfObservers={numOfObservers}
-            index={index()}
-            status={status()}
+            key={query.queryHash}
+            index={i()}
           />
         }}
       </For>

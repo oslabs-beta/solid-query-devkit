@@ -9,7 +9,7 @@ export default function ActiveQuery()   {
     const {count, setCount} = useContext(QueryContext)
     console.log(count)
     return (
-        <>
+        <section>
             <div id="activeQuery">
                 <OverviewData />
             </div>
@@ -22,9 +22,13 @@ export default function ActiveQuery()   {
                     <button id="remove">Remove</button>
                 </div>
             </section>
-            <DataExplorer />
-            <QueryExplorer />
-        </>
+            <div class="dataExplorer">
+                <DataExplorer />
+            </div>
+            <div class="queryExplorer">
+                <QueryExplorer />
+            </div>
+        </section>
 
     )
 
