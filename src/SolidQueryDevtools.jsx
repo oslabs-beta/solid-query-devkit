@@ -74,7 +74,7 @@ export default function SolidQueryDevtools(props) {
           </section>
         </Match>
         <Match when={showModal() === false}>
-          <button id="showModal" class="toggle" onclick={() => setShowModal(true)}>Open Modal</button>
+        <button id="showModal" class="toggle" onclick={() => setShowModal(true)}><img src={logo} width='45pxvw' height='45px'></img></button>
         </Match>
       </Switch>
     </>

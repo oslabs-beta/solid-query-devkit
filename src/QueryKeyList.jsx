@@ -16,25 +16,14 @@ export default function QueryKeyList (props)   {
  const {queries, setQueries} = useContext(QueryContext)
  const {status, setStatus} = useContext(QueryContext)
 
- const test = setInterval((() => console.log(queries()[4].state.status)), 500)
-
- 
-
   return (
     <div>
-      <div>{queries()[1].state.status}</div>
       {/* For each query, render a SingleKey component, passing down the necessary information from the query cache as props */}
       <For each={queries()}>
-        {(query, index) => {
-          console.log('query', query)
-          const queryKey = query.queryKey;
-          const numOfObservers = query.observers.length;
-          const status = query.state.status;
+        {(query, i) => {
           return <SingleKey
-            queryKey={queryKey}
-            numOfObservers={numOfObservers}
-            index={index()}
-            status={status}
+            key={query.queryHash}
+            index={i()}
           />
         }}
       </For>
