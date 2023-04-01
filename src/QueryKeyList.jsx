@@ -8,42 +8,33 @@
 // isn't built out yet.
 
 import SingleKey from './SingleKey';
-import { useQueryClient } from '@tanstack/solid-query';
-import { For, createSignal, onMount } from 'solid-js';
+import { For, createSignal, onMount, useContext } from 'solid-js';
+import { QueryContext } from "./QueryContext";
 
 export default function QueryKeyList (props)   {
-  const queryClient = useQueryClient();
 
+ const {queries, setQueries} = useContext(QueryContext)
+ const {status, setStatus} = useContext(QueryContext)
 
-    // create a queries signal
-    const [ queries, setQueries ] = createSignal([]);
+ const test = setInterval((() => console.log(queries()[4].state.status)), 500)
 
-    // onMount, fetch the queries and use setQueries to update the appropriate signal
-    onMount(async () => {
-      const queryClient = useQueryClient();
-      const newQueries = await queryClient.getQueryCache().queries;
-      setQueries(newQueries);
-    })
+ 
 
   return (
     <div>
+      <div>{queries()[1].state.status}</div>
       {/* For each query, render a SingleKey component, passing down the necessary information from the query cache as props */}
       <For each={queries()}>
         {(query, index) => {
+          console.log('query', query)
           const queryKey = query.queryKey;
           const numOfObservers = query.observers.length;
-          const { isStale } = query.observers[0].currentResult;
-          const { isFetching } = query.observers[0].currentResult;
-          const { enabled } = query.observers[0].options;
-          const { queryHash } = query;
+          const status = query.state.status;
           return <SingleKey
             queryKey={queryKey}
             numOfObservers={numOfObservers}
-            isStale={isStale}
-            isFetching={isFetching}
-            enabled={enabled}
-            queryHash={queryHash}
             index={index()}
+            status={status}
           />
         }}
       </For>
