@@ -8,33 +8,38 @@
 // isn't built out yet.
 
 import SingleKey from './SingleKey';
-import { For, createSignal, onMount, useContext } from 'solid-js';
+import { For, useContext, createSignal } from 'solid-js';
 import { QueryContext } from "./QueryContext";
+import { useQueryClient } from "@tanstack/solid-query";
 
 export default function QueryKeyList (props)   {
 
  const {queries, setQueries} = useContext(QueryContext)
+ // const {status, setStatus} = useContext(QueryContext)
 
- //potentially have statuses be a store
- const {status, setStatus} = useContext(QueryContext)
+ const test = setInterval((() => console.log(queries[1].state.status)), 500)
 
-  //createEffect to run every time the store changes
-
+ 
 
   return (
     <div>
       {/* For each query, render a SingleKey component, passing down the necessary information from the query cache as props */}
-      <For each={queries()}>
+      <For each={queries}>
         {(query, index) => {
           console.log('query', query)
           const queryKey = query.queryKey;
           const numOfObservers = query.observers.length;
-          const status = query.state.status;
+          const queryClient = useQueryClient();
+          const [status, setStatus] = createSignal(queryClient.queryCache.queries[index()].state.status);
+          queryClient.queryCache.subscribe(() => {
+            setStatus(() => queryClient.queryCache.queries[index()].state.status)
+            console.log('query status:', status());
+          });
           return <SingleKey
             queryKey={queryKey}
             numOfObservers={numOfObservers}
             index={index()}
-            status={status}
+            status={status()}
           />
         }}
       </For>

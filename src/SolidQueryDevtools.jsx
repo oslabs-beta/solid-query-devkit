@@ -45,7 +45,7 @@ export default function SolidQueryDevtools(props) {
               }}>
                 <header>
                   <img src={logo} width='65pxvw' height='65px'></img>
-                  <h1 class="queries">Queries ({`${queries().length}`})</h1>
+                  <h1 class="queries">Queries ({`${queries.length}`})</h1>
                   <nav class="statusGrid">
                     <button id="fresh" disabled>fresh</button>
                     <button id="fetching" disabled>fetching</button>
