@@ -8,6 +8,8 @@ export default function SingleKey(props)   {
   const {activeQuery, setActiveQuery} = useContext(QueryContext)
   const {queries, setQueries} = useContext(QueryContext)
 
+  const status = () => props.status;
+
   return (
     <div onClick={() => {
       
@@ -15,9 +17,10 @@ export default function SingleKey(props)   {
       console.log('acitve query: ', activeQuery())
       // console.log(queryClient.getQueryCache().queries)
     }}>
-      <span>{props.numOfObservers}</span>
-      <span>{props.queryHash}</span>
-      <span>test: {activeQuery().state ? queries()[1].state.status : 'test' }</span>
+      <span>Observers: {props.numOfObservers}</span>
+      <span>Key: {props.queryKey}</span>
+      <span>Status: {status()}</span>
+      <span>Index: {props.index}</span>
     </div>
   );
 };
