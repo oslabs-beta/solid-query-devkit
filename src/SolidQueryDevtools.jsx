@@ -1,10 +1,15 @@
 import QueryKeyList from "./QueryKeyList";
 import ActiveQuery from "./ActiveQuery";
 import { QueryProvider } from "./QueryContext";
-import { createSignal, createEffect, Match } from "solid-js";
+import { createSignal, createEffect, Match, useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
+import { QueryContext } from "./QueryContext";
 
-export default function Modal(props) {
+export default function SolidQueryDevtools(props) {
+  console.log(useContext(QueryContext))
+
+  const { queries } = useContext(QueryContext);
+  const { activeQuery} = useContext(QueryContext);
 
   const [showModal, setShowModal] = createSignal(false);
   const [showData, setShowData] = createSignal(false);
@@ -25,11 +30,11 @@ export default function Modal(props) {
     }
   });
 
+
   //we will eventually need an "X" button to close the modal which will setShowModal to false once more 
   return (
 
     <>
-    <QueryProvider>
       <Switch>
         <Match when={showModal() === true}>
           <section class="modal">
@@ -40,7 +45,7 @@ export default function Modal(props) {
               }}>
                 <header>
                   <img src={logo} width='65pxvw' height='65px'></img>
-                  <h1 class="queries">Queries(1)</h1>
+                  <h1 class="queries">Queries ({`${queries().length}`})</h1>
                   <nav class="statusGrid">
                     <button id="fresh" disabled>fresh</button>
                     <button id="fetching" disabled>fetching</button>
@@ -72,7 +77,6 @@ export default function Modal(props) {
           <button id="showModal" class="toggle" onclick={() => setShowModal(true)}><img src={logo} width='45pxvw' height='45px'></img></button>
         </Match>
       </Switch>
-      </QueryProvider>
     </>
   );
 };

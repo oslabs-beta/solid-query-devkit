@@ -14,7 +14,7 @@ const falsey = {
 }
 const Boolean = (props) =>  {
   const boolean = props.value ? 'true' : 'false'
-  const {count, setCount} = useContext(QueryContext);
+  // const {count, setCount} = useContext(QueryContext);
   return (
     <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>{boolean}</span></div>
   )
