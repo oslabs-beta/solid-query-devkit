@@ -14,15 +14,15 @@ import { QueryContext } from "./QueryContext";
 export default function QueryKeyList (props)   {
 
  const {queries, setQueries} = useContext(QueryContext)
+
+ //potentially have statuses be a store
  const {status, setStatus} = useContext(QueryContext)
 
- const test = setInterval((() => console.log(queries()[4].state.status)), 500)
+  //createEffect to run every time the store changes
 
- 
 
   return (
     <div>
-      <div>{queries()[1].state.status}</div>
       {/* For each query, render a SingleKey component, passing down the necessary information from the query cache as props */}
       <For each={queries()}>
         {(query, index) => {
