@@ -6,14 +6,15 @@ import logo from "./assets/SquidLogo.png";
 import { QueryContext } from "./QueryContext";
 
 export default function SolidQueryDevtools(props) {
-  console.log(useContext(QueryContext))
 
   const { queries } = useContext(QueryContext);
-  const { activeQuery} = useContext(QueryContext);
+  const { activeQuery } = useContext(QueryContext);
+  const { showModal, setShowModal } = useContext(QueryContext);
+  const { showData, setShowData } = useContext(QueryContext);
 
-  const [showModal, setShowModal] = createSignal(false);
-  const [showData, setShowData] = createSignal(false);
+
   const [viewWidth, setViewWidth] = createSignal('100vw');
+
 
   //add a style signal 
 
@@ -22,10 +23,10 @@ export default function SolidQueryDevtools(props) {
 
   createEffect(() => {
     //if Modal is open and Query Content is being shown, change the style width to be 50vw
-    if (showData() === true && showModal() === true)   {
+    if (showData() === true && showModal() === true) {
       setViewWidth('50vw');
     }
-    if (showData() === false && showModal() === true)   {
+    if (showData() === false && showModal() === true) {
       setViewWidth('100vw');
     }
   });
@@ -54,27 +55,28 @@ export default function SolidQueryDevtools(props) {
                   </nav>
                   <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
                 </header>
-                <QueryKeyList />
+
                 {/* Query List  */}
                 <div class="main">
-                  <button id="showAQ" onclick={() => setShowData(!showData())}>Query 1</button>
-                  <button>Query 2</button>
-                  <button>Query 3</button>
+                  <QueryKeyList />
                 </div>
               </div>
-              {/* <button id="showAQ" onclick={() => setShowData(!showData())}>Show Active Query</button> */}
               <Show when={showData() === true}>
                 <div class="rightContainer">
                   <section class="queryContent">
                     <ActiveQuery />
                   </section>
                 </div>
-                </Show>
+              </Show>
             </div>
           </section>
         </Match>
         <Match when={showModal() === false}>
-        <button id="showModal" class="toggle" onclick={() => setShowModal(true)}><img src={logo} width='45pxvw' height='45px'></img></button>
+          <button id="showModal" class="toggle" onclick={() => {
+            setShowModal(true);
+            console.log("THE MODAL HAS BEEN CHANGED TO:", showModal());
+          }
+          }><img src={logo} width='45pxvw' height='45px'></img></button>
         </Match>
       </Switch>
     </>
@@ -83,67 +85,3 @@ export default function SolidQueryDevtools(props) {
 
 
 
-
-
-
-// return (
-//     <section>
-//         <Switch>
-
-//             <Match when={showModal() === true}>
-
-//                 <section class="modal">
-//                    
-//                         <header>
-
-//                             <h1 class="queries">Queries</h1>
-
-//                                 <nav class="statusGrid">
-//                                     <ul>
-//                                         <li class="fresh">fresh</li>
-//                                         <li class="fetching">fetching</li>
-//                                         <li class="stale">stale</li>
-//                                         <li class="inactive">inactive</li>
-//                                     </ul>
-//                                 </nav>
-
-//                             <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
-
-//                         </header>
-
-//                         {/* <QueryKeyList /> */}
-
-//                             <Show
-//                                 when={showData() === true}
-//                                 fallback={
-//                                     <section class="main">
-//                                         <button id="showAQ" onclick={() => setShowData(!showData())}>Query 1</button>
-//                                         <button>Query 2</button>
-//                                         <button>Query 3</button>
-//                                     </section>
-//                                 }
-//                             >
-
-//                             <button id="showAQ" onclick={() => setShowData(!showData())}>Show Active Query</button>
-
-//                             <section class="sideBar">
-//                                 <ActiveQuery />
-//                             </section>
-
-
-//                         </Show>
-              
-//                 </section>
-
-//             </Match>
-
-//             <Match when={showModal() === false}>
-
-//                 <button id="showModal" class="toggle" onclick={() => setShowModal(true)}>Open Modal</button>
-
-//             </Match>
-
-//         </Switch>
-//     </section>
-// )
-// }

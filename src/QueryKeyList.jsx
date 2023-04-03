@@ -8,8 +8,9 @@
 // isn't built out yet.
 
 import SingleKey from './SingleKey';
-import { For, createSignal, onMount, useContext } from 'solid-js';
+import { For, useContext, createSignal } from 'solid-js';
 import { QueryContext } from "./QueryContext";
+import { useQueryClient } from "@tanstack/solid-query";
 
 export default function QueryKeyList (props)   {
 
