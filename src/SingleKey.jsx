@@ -12,7 +12,10 @@ export default function SingleKey(props) {
   //signal to set style:
   const [backgroundColor, setBackgroundColor] = createSignal('');
 
-  const query = () => (queries().filter((query) => query.queryHash === props.key)[0])
+  const query = () =>  {
+    // console.log('QUERY UPDATED')
+    return queries().filter((query) => query.queryHash === props.key)[0];
+  }
 
   //onClick, the button will set the activeQuery to query
   //the setShowData signal will also be activated, opening the side modal

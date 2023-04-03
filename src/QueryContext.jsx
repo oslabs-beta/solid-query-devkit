@@ -6,7 +6,7 @@ export const QueryContext = createContext();
 
 export function QueryProvider (props) {
 
-  const [activeQuery, setActiveQuery] = createSignal({})
+  const [activeQuery, setActiveQuery] = createSignal()
   const [queries, setQueries] = createSignal([]);
   const [status, setStatus] = createSignal('loading');
 
@@ -18,8 +18,13 @@ export function QueryProvider (props) {
   const queryClient = useQueryClient()
 
   queryClient.queryCache.subscribe(() => {
-    setQueries(() => [...queryClient.queryCache.queries])
-    console.log('queries in signal:', queries())
+    setQueries(() => [...queryClient.queryCache.queries]);
+    console.log('updated queries')
+    // console.log('queryCache updated');
+    if (activeQuery()) {
+      setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
+      console.log('activeQuery updated');
+    }
   });
 
   return (
