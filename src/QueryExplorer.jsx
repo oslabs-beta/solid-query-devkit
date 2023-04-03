@@ -1,23 +1,16 @@
 import { ObjectComponent } from "./JSONComponents/ObjectComponent"
-export default function QueryExplorer() {
+import { useContext } from "solid-js";
+import { QueryContext } from "./QueryContext";
 
-    const testObj = {
-        name: 'dakota',
-        age: 28,
-        cool: true,
-        lilBit: true,
-        somethingElse: undefined,
-        testNull: null,
-        arrTest: [1,2,3],
-        arr2Test: ['test', 3, null, true, {'please': 'work'},{'hello': 'bye'}]
-      }
+export default function QueryExplorer() {
+    const { activeQuery } = useContext(QueryContext);
 
     return (
         <>
         <div class="detailsHeader">
             <h3>Query Explorer</h3>
         </div>
-        <ObjectComponent obj={testObj} key={'test'} level={1}/>
+        <ObjectComponent obj={activeQuery()} key={'Query Data'} level={1}/>
         </>
         
     )
