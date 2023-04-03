@@ -29,6 +29,7 @@ export default function SingleKey(props) {
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
         });
+        console.log("THIS IS THE Active Query ", activeQuery());
       }}>
         <span id="queryColor">{query().queryHash}{query().state.status || 'undefined'}</span>
       </div>
