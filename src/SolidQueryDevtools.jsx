@@ -4,27 +4,48 @@ import { QueryProvider } from "./QueryContext";
 import { createSignal, createEffect, Match, useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 import { QueryContext } from "./QueryContext";
-import { useQueryClient } from "@tanstack/solid-query";
 
 export default function SolidQueryDevtools(props) {
 
+  //Signals imported from Query Context 
   const { queries } = useContext(QueryContext);
   const { activeQuery } = useContext(QueryContext);
   const { showModal, setShowModal } = useContext(QueryContext);
   const { showData, setShowData } = useContext(QueryContext);
   const { loading, isLoading } = useContext(QueryContext);
 
+  //Signals accessible in this Component 
+  const [fresh, setFresh] = createSignal(0);
+  const [stale, setStale] = createSignal(0);
+  const [inactive, setInactive] = createSignal(0);
+
 
   const [viewWidth, setViewWidth] = createSignal('100vw');
 
 
-  //Style Variables for Status Backgrounds 
-
+  //Style Variables for Status Backgrounds: 
   //Loading
-  const noneLoading = { "background-color": "red" }
-  const someLoading = { "background-color": "green" }
+  const noneLoading = { "background-color": "rgb(14, 46, 96)", "color": "rgb(89, 98, 109)" };
+  const someLoading = { "background-color": "blue", "color": "white" };
+  //Fresh
+  const noneFresh = { "background-color": "rgb(16, 66, 53)", "color": "rgb(89, 98, 109)" };
+  const someFresh = { "background-color": "green", "color": "white" };
+  //Stale
+  const noneStale = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)" };
+  const someStale = { "background-color": "rgb(255, 169, 8)", "color": "black" };
+  //Inactive
+  const noneInactive = { "background-color": "gray", "color": "rgb(89, 98, 109)" };
+  const someInactive = { "background-color": "gray", "color": "white" };
 
+  //Status Values:
+  //Fresh, Stale, & Inactive (loading is stored in a Signal on the Query Context and imported on this component)
+  createEffect(() => {
+    setFresh(() => queries().filter((query) => !query.isStale() && query.getObserversCount()).length);
+    setStale(() => queries().filter((query) => query.isStale()).length);
+    setInactive(() => queries().filter((query) => !query.getObserversCount()).length);
+  })
 
+  //Modal Controls:
   createEffect(() => {
     //if Modal is open and Query Content is being shown, change the style width to be 50vw
     if (showData() === true && showModal() === true) {
@@ -34,46 +55,6 @@ export default function SolidQueryDevtools(props) {
       setViewWidth('100vw');
     }
   });
-
-
-  //Fresh vs. Stale Status Functionality (STILL NEEDS WORK)
-  //fresh and stale array
-  const freshArray = [];
-  const staleArray = [];
-
-  function QueryStatus(queryHash) {
-    this.queryId = queryHash;
-  }
-
-  QueryStatus.prototype.staleTimer = function (queryHash, time) {
-    setTimeout(() => {
-      const queryIndex = () => {
-        for (let i = 0; i < freshArray.length; i++) {
-          if (freshArray[i][queryId] === queryHash) return [i, freshArray[i][queryId]];
-        }
-      }
-      let x = queryIndex();
-      freshArray.splice(x[0], 1);
-      staleArray.push(x[1]);
-      console.log(staleArray);
-    }, time);
-  }
-
-  function newQuery(queryHash, timer) {
-    //instantiate a new Query 
-    let newQuery = new QueryStatus(queryHash);
-    //push the new Query with its identifier, onto the freshArray
-    freshArray.push(newQuery);
-    //call the new Query's staleTimer function, which will run when the staleTime value on the query Object expires 
-    newQuery.staleTimer(queryHash, timer);
-  }
-
-  createEffect(() => {
-    let queryArrayIndex = query().length - 1;
-    newQuery(query()[queryArrayIndex].queryHash, query()[queryArrayIndex].options.staleTime ? query()[queryArrayIndex].options.staleTime : 0);
-  })
-
-
 
   return (
 
@@ -90,10 +71,10 @@ export default function SolidQueryDevtools(props) {
                   <img src={logo} width='65pxvw' height='65px'></img>
                   <h1 class="queries">Queries ({`${queries().length}`})</h1>
                   <nav class="statusGrid">
-                    <div id="fresh" >fresh</div>
-                    <div id="fetching" style={loading() ? someLoading : noneLoading}>fetching{loading()}</div>
-                    <div id="stale" >stale</div>
-                    <div id="inactive" >inactive</div>
+                    <div id="fresh" style={fresh()? someFresh : noneFresh}>fresh ({fresh()})</div>
+                    <div id="fetching" style={loading() ? someLoading : noneLoading}>fetching ({loading()})</div>
+                    <div id="stale" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
+                    <div id="inactive" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
                   </nav>
                   <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
                 </header>
