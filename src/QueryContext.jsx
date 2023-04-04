@@ -10,6 +10,9 @@ export function QueryProvider (props) {
   const [queries, setQueries] = createSignal([]);
   const [status, setStatus] = createSignal('loading');
   const [loading, setLoading] = createSignal(0);
+  const [sort, setSort] = createSignal('last-updated')
+  const [sortReverse, setSortReverse] = createSignal(false)
+  const [filter, setFilter] = createSignal('')
 
   //showData & showModal
   const [showModal, setShowModal] = createSignal(false);
@@ -21,15 +24,16 @@ export function QueryProvider (props) {
   //subscribing to the query cache, which runs the function every time the queryCache updates 
   queryClient.queryCache.subscribe(() => {
     setQueries(() => [...queryClient.queryCache.queries]);
-    setLoading(queryClient.isFetching());
-    console.log('queryCache updated', queries());
+    setLoading(queryClient.isFetching());;
+    console.log(filter())
+    // console.log('queryCache updated');
     if (activeQuery()) {
       setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
     }
   });
 
   return (
-    <QueryContext.Provider value={{queries, setQueries, activeQuery, setActiveQuery, status, setStatus, showModal, setShowModal, showData, setShowData, loading, setLoading}}>
+    <QueryContext.Provider value={{filter, setFilter, sortReverse, setSortReverse, sort, setSort, queries, setQueries, activeQuery, setActiveQuery, status, setStatus, showModal, setShowModal, showData, setShowData, loading, setLoading}}>
       {props.children}
     </QueryContext.Provider>
   )

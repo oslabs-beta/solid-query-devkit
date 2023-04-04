@@ -13,6 +13,12 @@ export default function SolidQueryDevtools(props) {
   const { showModal, setShowModal } = useContext(QueryContext);
   const { showData, setShowData } = useContext(QueryContext);
   const { loading, isLoading } = useContext(QueryContext);
+  const { setSort } = useContext(QueryContext);
+  const { sortReverse, setSortReverse } = useContext(QueryContext);
+  const { filter, setFilter } = useContext(QueryContext);
+
+
+  
 
   //Signals accessible in this Component 
   const [fresh, setFresh] = createSignal(0);
@@ -56,6 +62,8 @@ export default function SolidQueryDevtools(props) {
     }
   });
 
+
+
   return (
 
     <>
@@ -76,6 +84,12 @@ export default function SolidQueryDevtools(props) {
                     <div id="stale" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
                     <div id="inactive" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
                   </nav>
+                  <input type="text" onChange={(e) => {setFilter(e.target.value)}}></input>
+                  <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
+                    <option value="last-updated" selected>Sort by Last Updated</option>
+                    <option value="hash">Sort by Query Hash</option>
+                  </select>
+                  <button onClick={() => setSortReverse(!sortReverse())}>{ sortReverse() ? '\u2191 Asc' : '\u2193 Dec'}</button>
                   <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
                 </header>
 

@@ -10,10 +10,8 @@ export default function DataExplorer()   {
         <div class="detailsHeader">
             <h3>Data</h3>
         </div>
-        <ObjectComponent obj={activeQuery().state} key={'Data'} level={1}/>
+        <ObjectComponent obj={activeQuery().state.data || {}} key={'Data'} level={1}/>
         </>
-        
-
     )
 
 }

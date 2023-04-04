@@ -4,17 +4,13 @@ import { createSignal } from "solid-js";
 export function ObjectComponent(props) {
   const [enabled, setEnabled] = createSignal(false)
 
-  const objText = Array.isArray(props.obj) ? 
-  `[${props.obj.length} items]` : 
-  `{${Object.keys(props.obj).length} item${Object.keys(props.obj).length > 1 ? 's' : ''}}`
-
   return (
     <>
     <div style = { `margin-left: ${props.level * 15}px; color: white; cursor: pointer; width: fit-content;`} >
       <span onClick={() => setEnabled(!enabled())}>
         <span style={'font-weight: bold'}>{!enabled() ? '\u25B6' : '\u25BC'} {props.key} </span>
         <Show when={!enabled()}>
-          <span style={'font-size: 75%'}>{objText}</span>
+          <span style={'font-size: 75%'}>{Array.isArray(props.obj) ? `[${props.obj.length} items]` : `{${Object.keys(props.obj).length} item${Object.keys(props.obj).length > 1 ? 's' : ''}}`}</span>
         </Show>
       </span>
     </div>
