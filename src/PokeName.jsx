@@ -6,7 +6,6 @@ export default function PokeName(props) {
   // console.log(queryClient.getQueryCache())
 
   const [enabled, setEnabled] = createSignal(false)
-  console.log('create query', createQuery)
 
   const query = createQuery(() => ['pokemon', props.num],
   async () => {

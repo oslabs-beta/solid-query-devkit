@@ -12,7 +12,7 @@ export default function SingleKey(props) {
   //signal to set style:
   const [backgroundColor, setBackgroundColor] = createSignal('');
 
-  const query = () =>  {
+  const query = () => {
     // console.log('QUERY UPDATED')
     return queries().filter((query) => query.queryHash === props.key)[0];
   }
@@ -20,17 +20,31 @@ export default function SingleKey(props) {
   //onClick, the button will set the activeQuery to query
   //the setShowData signal will also be activated, opening the side modal
 
+
   return (
     <section class="queryKey">
       <div class="observers">{query().observers.length}</div>
       <div id="singleKey" style={backgroundColor()} onClick={() => {
-        setActiveQuery(query());
-        setShowData(!showData());
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
         });
-        console.log("THIS IS THE Active Query ", activeQuery());
-      }}>
+        let queryHash = query().queryHash;
+        if (activeQuery() === undefined || activeQuery().queryHash !== queryHash)  {
+          setActiveQuery(query());
+          setShowData(true);
+        }
+        else if (activeQuery().queryHash === queryHash) {
+          setShowData(false);
+          setActiveQuery(undefined);
+        }
+
+        // console.log("This is the Key Hash:", queryHash);
+        // console.log('This is the activeQuery key Hash', activeQuery().queryHash)
+        
+        
+        
+      }
+      }>
         <span id="queryColor">{query().queryHash}{query().state.status || 'undefined'}</span>
       </div>
     </section>

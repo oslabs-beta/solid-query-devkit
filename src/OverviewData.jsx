@@ -23,7 +23,7 @@ export default function OverviewData()   {
             </div>
             <div class="queryDetailsData">
                 <div style={"margin-left: 5px;"}>{'['}</div>
-                <For each={queryArr}>
+                <For each={queryArr()}>
                     {(el, i) => {
                         let comma = ',';
                         if (i() === queryArr.length - 1) comma = '';
