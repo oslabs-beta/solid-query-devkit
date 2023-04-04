@@ -16,18 +16,16 @@ export function QueryProvider (props) {
   const [showData, setShowData] = createSignal(false);
 
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
+  //subscribing to the query cache, which runs the function every time the queryCache updates 
   queryClient.queryCache.subscribe(() => {
     setQueries(() => [...queryClient.queryCache.queries]);
-    setLoading(queryClient.isFetching());;
-    console.log('updated queries')
-    // console.log('queryCache updated');
+    setLoading(queryClient.isFetching());
+    console.log('queryCache updated', queries());
     if (activeQuery()) {
       setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
-      console.log('activeQuery updated');
     }
-
   });
 
   return (

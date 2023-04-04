@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .modal {
   background-color: rgb(13, 21, 32);
   height: 100%;
@@ -23,6 +24,7 @@ body {
   /* flex-direction: column; */
   /* overflow-y: scroll; */
 }
+
 #showModal  {
   background-color: Transparent;
   background-repeat:no-repeat;
@@ -38,6 +40,7 @@ body {
   background-color: rgba(27 78 98);
   border-radius: 45px;
 }
+
 .outerContainer {
   display: flex;
   flex-direction: row;
@@ -63,84 +66,78 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
 header nav ul {
   display: flex;
   align-items: baseline;
   list-style-type: none;
 }
+
 .wrapper {
   display: flex;
   flex-direction: row;
 }
+
 .statusGrid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
 }
+
 #fresh {
-  color: white;
-  background-color: green;
   margin-right: 10px;
+  padding: 8px;
+  font-weight: bolder;
   border-radius: 5px;
 }
-#fresh:disabled {
-  color: rgba(88 92 109);
-  background-color: rgba(16 66 52);
-  margin-right: 10px;
-}
+
 #fetching {
-  color: white;
-  background-color: rgba(45 105 246);
   margin-right: 10px;
+  padding: 8px;
+  font-weight: bolder;
   border-radius: 5px;
 }
-#fetching:disabled {
-  color: rgba(88 92 109);
-  background-color: rgba(36 35 103);
-  margin-right: 10px;
-}
+
 #stale {
-  color: white;
-  background-color: yellow;
   margin-right: 10px;
+  padding: 8px;
+  font-weight: bolder;
   border-radius: 5px;
 }
-#stale:disabled {
-  color: rgba(88 92 109);
-  background-color: rgb(203, 153, 14);
-  margin-right: 10px;
-}
+
 #inactive {
-  color: white;
-  color: gray;
   margin-right: 10px;
+  padding: 8px;
+  font-weight: bolder;
   border-radius: 5px;
 }
-#inactive:disabled {
-  color: rgba(88 92 109);
-  background-color: rgba(31 38 57);
-  margin-right: 10px;
-}
+
+
 #activeQuery {
   display: flex;
   flex-direction: column;
   color: white;
 }
+
 .detailsHeader {
   background-color: rgb(23, 35, 53);
   color: white;
 }
+
 .queryDetailsContent {
   padding: 10px;
 }
+
 .queryActionsHeader {
   background-color: rgb(23, 35, 53);
   color: white;
 }
+
 .queryActionsButtons {
   padding: 10px;
 }
+
 #refetch {
   background-color: rgba(45 105 246);
   color: white;

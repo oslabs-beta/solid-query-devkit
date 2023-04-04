@@ -4,7 +4,7 @@ import { useContext, For } from "solid-js";
 export default function OverviewData()   {
 
     const {activeQuery, setActiveQuery} = useContext(QueryContext);
-    const queryArr = JSON.parse(activeQuery().queryHash);
+    const queryArr = () => JSON.parse(activeQuery().queryHash);
 
     function normalTime() {
        const unixTime = activeQuery().state.dataUpdatedAt;
@@ -23,7 +23,7 @@ export default function OverviewData()   {
             </div>
             <div class="queryDetailsData">
                 <div style={"margin-left: 5px;"}>{'['}</div>
-                <For each={queryArr}>
+                <For each={queryArr()}>
                     {(el, i) => {
                         let comma = ',';
                         if (i() === queryArr.length - 1) comma = '';
