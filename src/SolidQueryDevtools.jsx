@@ -13,6 +13,12 @@ export default function SolidQueryDevtools(props) {
   const { showModal, setShowModal } = useContext(QueryContext);
   const { showData, setShowData } = useContext(QueryContext);
   const { loading, isLoading } = useContext(QueryContext);
+  const { setSort } = useContext(QueryContext);
+  const { sortReverse, setSortReverse } = useContext(QueryContext);
+  const { filter, setFilter } = useContext(QueryContext);
+
+
+  
 
 
   const [viewWidth, setViewWidth] = createSignal('100vw');
@@ -68,10 +74,6 @@ export default function SolidQueryDevtools(props) {
     newQuery.staleTimer(queryHash, timer);
   }
 
-  createEffect(() => {
-    let queryArrayIndex = query().length - 1;
-    newQuery(query()[queryArrayIndex].queryHash, query()[queryArrayIndex].options.staleTime ? query()[queryArrayIndex].options.staleTime : 0);
-  })
 
 
 
@@ -95,6 +97,12 @@ export default function SolidQueryDevtools(props) {
                     <div id="stale" >stale</div>
                     <div id="inactive" >inactive</div>
                   </nav>
+                  <input type="text" onChange={(e) => {setFilter(e.target.value)}}></input>
+                  <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
+                    <option value="last-updated" selected>Sort by Last Updated</option>
+                    <option value="hash">Sort by Query Hash</option>
+                  </select>
+                  <button onClick={() => setSortReverse(!sortReverse())}>{ sortReverse() ? '\u2191 Asc' : '\u2193 Dec'}</button>
                   <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
                 </header>
 
