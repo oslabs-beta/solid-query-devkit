@@ -18,16 +18,16 @@ body {
   resize: vertical;
   display: flex;
   border-style: none;
-  border-top: solid rgba(5,5,50,0.645);
-  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  border-top: solid rgba(5, 5, 50, 0.645);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 
   /* flex-direction: column; */
   /* overflow-y: scroll; */
 }
 
-#showModal  {
+#showModal {
   background-color: Transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
   position: absolute;
   height: 250px;
@@ -36,7 +36,12 @@ body {
   right: 0%;
 
 }
-#showModal:hover{
+
+.closeModal:hover {
+  background-color: rgb(83, 69, 69);
+}
+
+#showModal:hover {
   background-color: rgba(27 78 98);
   border-radius: 45px;
 }
@@ -51,12 +56,21 @@ body {
   overflow-y: scroll;
 }
 
+#narrow {
+  width: 50vw;
+}
+
+#wide {
+  width: 100vw;
+}
+
 .rightContainer {
   width: 50vw;
   height: 99%;
   border-left: solid rgba(33 39 55) 2px;
-  overflow-y: scroll;
+  overflow: scroll;
 }
+
 
 header {
   background-color: rgb(23, 35, 53);
@@ -151,6 +165,25 @@ header nav ul {
   font-weight: bold;
   border-radius: 5px;
   border: none;
+  margin: 2px;
+}
+
+#invalidate {
+  background-color: rgba(241 179 62);
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  margin: 2px;
+}
+
+#reset {
+  background-color: rgb(63, 78, 96);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  margin: 2px;
 }
 
 #remove {
@@ -159,7 +192,7 @@ header nav ul {
   font-weight: bold;
   border-radius: 5px;
   border: none;
-  margin-left: 5px;
+  margin: 2px;
 }
 
 .main {
@@ -181,7 +214,7 @@ header nav ul {
   border: solid black 1px;
 }
 
-#singleKey  {
+#singleKey {
   background-color: rgb(13, 21, 32, .8);
   width: 100vw;
   border: solid rgba(33 39 55) 1px;
@@ -192,4 +225,24 @@ header nav ul {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (max-width: 1250px) {
+
+  .outerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .rightContainer {
+    width: 100vw;
+    height: 40%;
+  }
+
+  #narrow {
+    width: 100vw;
+    height: 60%;
+  }
+
 }

@@ -9,6 +9,9 @@ import logo from "./assets/SquidLogo.png";
   //Fresh
   const noneFresh = { "background-color": "rgb(16, 66, 53)", "color": "rgb(89, 98, 109)" };
   const someFresh = { "background-color": "green", "color": "white" };
+  //Paused
+  const nonePaused = {"background-color": "rgb(140, 73, 235)", "color": "white", "opacity": "0.3"};
+  const somePaused = {"background-color": "rgb(140, 73, 235)", "color": "white"};
   //Stale
   const noneStale = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)" };
   const someStale = { "background-color": "rgb(255, 169, 8)", "color": "black" };
@@ -21,7 +24,7 @@ import logo from "./assets/SquidLogo.png";
 
   //Styles for Heading display
   const fullDisplay = {"display": "flex"}
-  const halfDisplay = {"display": "flex", "width": "50%", "justify-content": "space-between"}
+  const halfDisplay = {"display": "flex", "justify-content": "space-between"}
   const infoContainer = {"display": "flex", "flex-direction": "column", "align-items": "center", "justify-content": "space-between"}
   const sortOptions = {"display": "flex", "justify-content": "space-between", "width": "100%"}
 
@@ -36,18 +39,20 @@ export  default function Header(props) {
   const { loading } = useContext(QueryContext);
 
   const fresh = () => queries().filter((query) => !query.isStale() && query.getObserversCount()).length;
+  const paused = () => queries().filter((query) => query.state.fetchStatus === "paused").length;
   const stale = () => queries().filter((query) => query.isStale()).length;
   const inactive = () => queries().filter((query) => !query.getObserversCount()).length;
   const paused = () => queries().filter((query) => !query.state.fetchStatus == 'paused').length;
 
   return (
     <header style={ !activeQuery() ? fullDisplay : halfDisplay}>
-      <img src={logo} width='65pxvw' height='65px'></img>
+      <img src={logo} width='65pxvw' height='65px' class="closeModal" onclick={() => setShowModal(false)}></img>
       <h1 class="queries">Queries ({`${queries().length}`})</h1>
       <div style={infoContainer}>
       <nav class="statusGrid">
-        <div id="fresh" style={fresh()? someFresh : noneFresh}>fresh ({fresh()})</div>
+        <div id="fresh" style={fresh() ? someFresh : noneFresh}>fresh ({fresh()})</div>
         <div id="fetching" style={loading() ? someLoading : noneLoading}>fetching ({loading()})</div>
+        <div id="paused" style={paused() ? somePaused : nonePaused}>paused ({paused()})</div>
         <div id="stale" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
         <div id="inactive" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
         <div id="paused" style={paused() ? somePaused : nonePaused}>paused ({inactive()})</div>

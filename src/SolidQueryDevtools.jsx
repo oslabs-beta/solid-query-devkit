@@ -12,17 +12,21 @@ export default function SolidQueryDevtools(props) {
   const { showModal, setShowModal } = useContext(QueryContext);
   const { showData } = useContext(QueryContext);
 
+  // IDEA: repurpose viewWidth signal to contain either an empty string at initialization,
+  // or a string with a class/id identifier (e.g., "responsive")
+  // whatever that signal is will be added via brackets as an attribute on the left container div,
+  // but only conditionally, based on the create effect below. 
 
-  const [viewWidth, setViewWidth] = createSignal('100vw');
+  const [viewWidth, setViewWidth] = createSignal('wide');
 
   //Modal Controls:
   createEffect(() => {
     //if Modal is open and Query Content is being shown, change the style width to be 50vw
     if (showData() === true && showModal() === true) {
-      setViewWidth('50vw');
+      setViewWidth('narrow');
     }
     if (showData() === false && showModal() === true) {
-      setViewWidth('100vw');
+      setViewWidth('wide');
     }
   });
 
@@ -34,9 +38,7 @@ export default function SolidQueryDevtools(props) {
           <section class="modal">
             {/* Header */}
             <div class="outerContainer">
-              <div class="leftContainer" style={{
-                'width': viewWidth()
-              }}>
+              <div class="leftContainer" id={viewWidth()}>
                 <Header />
                 <div class="main">
                   <QueryKeyList />
