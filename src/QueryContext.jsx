@@ -24,12 +24,10 @@ export function QueryProvider (props) {
   //subscribing to the query cache, which runs the function every time the queryCache updates 
   queryClient.queryCache.subscribe(() => {
     setQueries(() => [...queryClient.queryCache.queries]);
-    setLoading(queryClient.isFetching());;
-    console.log(filter())
-    // console.log('queryCache updated');
+    setLoading(queryClient.isFetching());
     if (activeQuery()) {
       setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
-    }
+    };
   });
 
   return (

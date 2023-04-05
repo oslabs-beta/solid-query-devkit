@@ -82,7 +82,7 @@ header nav ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 #fresh {
@@ -101,12 +101,19 @@ header nav ul {
 
 #stale {
   margin-right: 10px;
-  padding: 8px;
+  padding: 0.1em;
   font-weight: bolder;
   border-radius: 5px;
 }
 
 #inactive {
+  margin-right: 10px;
+  padding: 8px;
+  font-weight: bolder;
+  border-radius: 5px;
+}
+
+#paused {
   margin-right: 10px;
   padding: 8px;
   font-weight: bolder;

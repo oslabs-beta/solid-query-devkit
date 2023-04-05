@@ -38,12 +38,18 @@ export default function QueryKeyList (props)   {
     
   } 
   if (sort() === 'hash') {
-    return queries().sort((a, b) => {
+    const toReturn =  queries().sort((a, b) => {
       const nameA = a.queryHash.toUpperCase()
       const nameB = b.queryHash.toUpperCase()
       if (nameA > nameB) return 1;
       if (nameA < nameB) return -1;
     })
+
+    if (filter().length) {
+      return sortReverse() ? toReturn.reverse().filter((query) => query.queryHash.includes(filter())) : toReturn.filter((query) => query.queryHash.includes(filter()))
+    } else {
+      return sortReverse() ? toReturn.reverse() : toReturn
+    }
   } 
   
   else {
