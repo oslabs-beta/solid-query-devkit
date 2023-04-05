@@ -2,20 +2,18 @@ import { useContext, createSignal } from "solid-js";
 import { QueryContext } from "./QueryContext";
 import { useQueryClient } from "@tanstack/solid-query";
 
-//Stylings for observers box
+//Styles for observers box
 const stylings = {
-  fresh: {"background-color": "green", "color": "white"},
-  inactive: {"background-color": "gray", "color": "white"},
-  stale: {"background-color": "rgb(204, 150, 49)", "color": "white"},
-  fetching: {"background-color": "blue", "color": "white"},
+  fresh: {"background-color": "green", "color": "white", "font-weight": "bold"},
+  inactive: {"background-color": "gray", "color": "white", "font-weight": "bold"},
+  stale: {"background-color": "rgb(255, 169, 8)", "color": "white", "font-weight": "bold"},
+  fetching: {"background-color": "blue", "color": "white", "font-weight": "bold"},
+  paused: {"background-color": "rgb(150, 71, 166)", "color": "white", "font-weight": "bold"},
 }
 
 
 export default function SingleKey(props) {
-  const queryClient = useQueryClient();
-  const { activeQuery, setActiveQuery } = useContext(QueryContext);
-  const { queries, setQueries } = useContext(QueryContext);
-  const { showData, setShowData } = useContext(QueryContext);
+  const { activeQuery, setActiveQuery, queries, setShowData } = useContext(QueryContext);
 
   //signal to set style:
   const [backgroundColor, setBackgroundColor] = createSignal('');
@@ -25,7 +23,8 @@ export default function SingleKey(props) {
   }
 
   function findStatus(query) {
-    if (query.state.fetchStatus == 'fetching') {console.log('fff'); return 'fetching'} 
+    if (query.state.fetchStatus == 'fetching') return 'fetching'
+    if (query.state.fetchStatus == 'paused') return 'paused'
     if (!query.isStale() && query.getObserversCount()) return 'fresh';
     if (query.isStale()) return 'stale'
     if (!query.observers.length) return 'inactive'
@@ -42,21 +41,14 @@ export default function SingleKey(props) {
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
         });
-        let queryHash = query().queryHash;
-        if (activeQuery() === undefined || activeQuery().queryHash !== queryHash)  {
+        // let queryHash = query().queryHash;
+        if (activeQuery() == undefined || activeQuery().queryHash !== props.key)  {
           setActiveQuery(query());
           setShowData(true);
-        }
-        else if (activeQuery().queryHash === queryHash) {
+        } else {
           setShowData(false);
           setActiveQuery(undefined);
         }
-
-        // console.log("This is the Key Hash:", queryHash);
-        // console.log('This is the activeQuery key Hash', activeQuery().queryHash)
-        
-        
-        
       }
       }>
         <span id="queryColor">{query().queryHash}</span>

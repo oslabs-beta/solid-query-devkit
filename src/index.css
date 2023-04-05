@@ -52,8 +52,16 @@ body {
   height: 50%;
 }
 
+.leftContainer  {
+  overflow-y: scroll;
+}
+
 #narrow {
   width: 50vw;
+}
+
+#wide {
+  width: 100vw;
 }
 
 .rightContainer {
@@ -64,21 +72,11 @@ body {
 }
 
 
-
-#wide {
-  width: 100vw;
-}
-
-.leftContainer {
-  overflow: scroll;
-}
-
-
 header {
   background-color: rgb(23, 35, 53);
   color: white;
   padding: 15px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   display: flex;
   justify-content: space-between;
 }
@@ -209,7 +207,6 @@ header nav ul {
 .observers {
   display: flex;
   justify-content: center;
-  background-color: rgba(241 179 62);
   width: 5vw;
   height: 5vh;
   color: black;
