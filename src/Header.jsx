@@ -18,9 +18,7 @@ import logo from "./assets/SquidLogo.png";
   //Inactive
   const noneInactive = { "background-color": "gray", "color": "rgb(89, 98, 109)" };
   const someInactive = { "background-color": "gray", "color": "white" };
-  //Paused
-  const nonePaused = { "background-color": "rgba(57,47,110,255)", "color": "rgb(89, 98, 109)" };
-  const somePaused = { "background-color": "rgb(150, 71, 166)", "color": "white" };
+
 
   //Styles for Heading display
   const fullDisplay = {"display": "flex"}
@@ -42,7 +40,6 @@ export  default function Header(props) {
   const paused = () => queries().filter((query) => query.state.fetchStatus === "paused").length;
   const stale = () => queries().filter((query) => query.isStale()).length;
   const inactive = () => queries().filter((query) => !query.getObserversCount()).length;
-  const paused = () => queries().filter((query) => !query.state.fetchStatus == 'paused').length;
 
   return (
     <header style={ !activeQuery() ? fullDisplay : halfDisplay}>
