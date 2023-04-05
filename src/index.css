@@ -48,21 +48,21 @@ body {
 }
 
 .leftContainer  {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .rightContainer {
   width: 50vw;
   height: 99%;
   border-left: solid rgba(33 39 55) 2px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 header {
   background-color: rgb(23, 35, 53);
   color: white;
   padding: 15px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   display: flex;
   justify-content: space-between;
 }
@@ -174,7 +174,6 @@ header nav ul {
 .observers {
   display: flex;
   justify-content: center;
-  background-color: rgba(241 179 62);
   width: 5vw;
   height: 5vh;
   color: black;

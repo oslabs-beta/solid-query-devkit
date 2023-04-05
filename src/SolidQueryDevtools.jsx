@@ -1,7 +1,6 @@
 import QueryKeyList from "./QueryKeyList";
 import ActiveQuery from "./ActiveQuery";
 import Header from "./Header";
-import { QueryProvider } from "./QueryContext";
 import { createSignal, createEffect, Match, useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 import { QueryContext } from "./QueryContext";

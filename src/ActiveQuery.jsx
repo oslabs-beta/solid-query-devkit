@@ -1,14 +1,11 @@
 import OverviewData from "./OverviewData";
-import DataExplorer from "./DataExplorer";
-import QueryExplorer from "./QueryExplorer";
+import Explorer from "./Explorer";
 import { useContext } from "solid-js";
 import { QueryContext } from "./QueryContext";
 import { useQueryClient } from "@tanstack/solid-query";
 
 
 export default function ActiveQuery()   {
-    const {count, setCount} = useContext(QueryContext);
-    // console.log(count);
 
     const queryClient = useQueryClient()
 
@@ -58,10 +55,10 @@ export default function ActiveQuery()   {
                 </div>
             </section>
             <div class="dataExplorer">
-                <DataExplorer />
+                <Explorer name={'Query Explorer'} obj={activeQuery().state.data} key={'Data'} />
             </div>
             <div class="queryExplorer">
-                <QueryExplorer />
+                <Explorer name={'Query Explorer'} obj={activeQuery()} key={'Query'}/>
             </div>
         </section>
 
