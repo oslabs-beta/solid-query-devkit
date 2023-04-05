@@ -52,7 +52,6 @@ export  default function Header(props) {
         <div id="paused" style={paused() ? somePaused : nonePaused}>paused ({paused()})</div>
         <div id="stale" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
         <div id="inactive" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
-        <div id="paused" style={paused() ? somePaused : nonePaused}>paused ({inactive()})</div>
       </nav>
       <div style={sortOptions}>
       <input type="text" placeholder="Filter queries..." onChange={(e) => {setFilter(e.target.value)}}></input>
