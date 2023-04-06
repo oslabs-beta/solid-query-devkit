@@ -109,6 +109,10 @@ header nav ul {
   margin: 0.5em 0;
 }
 
+.statusGrid:hover {
+  cursor: pointer;
+}
+
 #fresh {
   margin-right: 10px;
   padding: 8px;
