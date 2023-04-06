@@ -20,30 +20,30 @@ body {
   border-style: none;
   border-top: solid rgba(5, 5, 50, 0.645);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-
-  /* flex-direction: column; */
-  /* overflow-y: scroll; */
 }
 
 #showModal {
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  top: 0%;
-  right: 0%;
+  position: fixed;
+  height: 75px;
+  width: 75px;
+  bottom: 3%;
+  right: 2%;
 
 }
+
 
 .closeModal:hover {
   background-color: rgb(83, 69, 69);
+  cursor: pointer;
 }
 
 #showModal:hover {
-  background-color: rgba(27 78 98);
-  border-radius: 45px;
+  /* background-color: rgba(27 78 98);
+  border-radius: 45px; */
+  cursor: pointer;
 }
 
 .outerContainer {
@@ -79,12 +79,17 @@ header {
   /* margin-bottom: 40px; */
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0%;
 }
 
 header nav ul {
   display: flex;
   align-items: baseline;
   list-style-type: none;
+  position: sticky;
+  top: 0%;
+
 }
 
 .queries {
@@ -163,6 +168,8 @@ header nav ul {
 .detailsHeader {
   background-color: rgb(23, 35, 53);
   color: white;
+  position: sticky;
+  top: 0%;
 }
 
 .queryDetailsContent {
