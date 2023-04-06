@@ -21,10 +21,10 @@ import logo from "./assets/SquidLogo.png";
 
 
   //Styles for Heading display
-  const fullDisplay = {"display": "flex"}
-  const halfDisplay = {"display": "flex", "justify-content": "space-between"}
+  const fullDisplay = {"display": "flex", "align-items": "center"}
+  const halfDisplay = {"display": "flex", "justify-content": "space-between", "align-items": "center"}
   const infoContainer = {"display": "flex", "flex-direction": "column", "align-items": "center", "justify-content": "space-between"}
-  const sortOptions = {"display": "flex", "justify-content": "space-between", "width": "100%"}
+  const sortOptions = {"display": "flex", "justify-content": "space-around", "width": "100%", "margin": "0.5em 0"}
 
 
 export  default function Header(props) {
@@ -44,22 +44,22 @@ export  default function Header(props) {
   return (
     <header style={ !activeQuery() ? fullDisplay : halfDisplay}>
       <img src={logo} width='65pxvw' height='65px' class="closeModal" onclick={() => setShowModal(false)}></img>
-      <h1 class="queries">Queries ({`${queries().length}`})</h1>
+      <h1 class="queries">{`${queries().length}`} queries</h1>
       <div style={infoContainer}>
       <nav class="statusGrid">
-        <div id="fresh" style={fresh() ? someFresh : noneFresh}>fresh ({fresh()})</div>
-        <div id="fetching" style={loading() ? someLoading : noneLoading}>fetching ({loading()})</div>
-        <div id="paused" style={paused() ? somePaused : nonePaused}>paused ({paused()})</div>
-        <div id="stale" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
-        <div id="inactive" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
+        <div class="statusBtn" style={fresh() ? someFresh : noneFresh}>fresh ({fresh()})</div>
+        <div class="statusBtn" style={loading() ? someLoading : noneLoading}>fetching ({loading()})</div>
+        <div class="statusBtn" style={paused() ? somePaused : nonePaused}>paused ({paused()})</div>
+        <div class="statusBtn" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
+        <div class="statusBtn" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
       </nav>
       <div style={sortOptions}>
-      <input type="text" placeholder="Filter queries..." onChange={(e) => {setFilter(e.target.value)}}></input>
-      <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
+      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter(e.target.value)}}></input>
+      <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort(e.target.value)}>
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
-      <button onClick={() => setSortReverse(!sortReverse())}>{ sortReverse() ? '\u2191 Asc' : '\u2193 Dec'}</button>
+      <button id="ascBtn" onClick={() => setSortReverse(!sortReverse())}>{ sortReverse() ? '\u2191 Asc' : '\u2193 Dec'}</button>
       </div>
       </div>
      
