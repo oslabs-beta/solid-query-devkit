@@ -59,7 +59,7 @@ export default function SolidQueryDevtools(props) {
             setShowModal(true);
             console.log("THE MODAL HAS BEEN CHANGED TO:", showModal());
           }
-          }><img src={logo} width='45pxvw' height='45px'></img></button>
+          }><img src={logo} width='75pxvw' height='75px'></img></button>
         </Match>
       </Switch>
     </>
