@@ -55,7 +55,7 @@ export default function ActiveQuery()   {
                 </div>
             </section>
             <div class="dataExplorer">
-                <Explorer name={'Query Explorer'} obj={activeQuery().state.data} key={'Data'} />
+                <Explorer name={'Data Explorer'} obj={activeQuery().state.data} key={'Data'} />
             </div>
             <div class="queryExplorer">
                 <Explorer name={'Query Explorer'} obj={activeQuery()} key={'Query'}/>

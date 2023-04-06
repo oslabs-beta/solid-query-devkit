@@ -35,11 +35,42 @@ export  default function Header(props) {
   const { setShowModal } = useContext(QueryContext);
   const { activeQuery } = useContext(QueryContext);
   const { loading } = useContext(QueryContext);
+  const { statusFilters, setStatusFilters } = useContext(QueryContext);
 
   const fresh = () => queries().filter((query) => !query.isStale() && query.getObserversCount()).length;
   const paused = () => queries().filter((query) => query.state.fetchStatus === "paused").length;
   const stale = () => queries().filter((query) => query.isStale()).length;
   const inactive = () => queries().filter((query) => !query.getObserversCount()).length;
+
+  const setFresh = () => {
+    if (statusFilters().active) setStatusFilters({status: 'fresh', active: false});
+    else setStatusFilters({status: 'fresh', active: true});
+    console.log('hey', statusFilters());
+  };
+
+  const setFetching = () => {
+    if (statusFilters().active) setStatusFilters({status: 'fetching', active: false});
+    else setStatusFilters({status: 'fetching', active: true});
+    console.log(statusFilters());
+  };
+
+  const setPaused = () => {
+    if (statusFilters().active) setStatusFilters({status: 'paused', active: false});
+    else setStatusFilters({status: 'paused', active: true});
+    console.log(statusFilters());
+  };
+
+  const setStale = () => {
+    if (statusFilters().active) setStatusFilters({status: 'stale', active: false});
+    else setStatusFilters({status: 'stale', active: true});
+    console.log(statusFilters());
+  };
+
+  const setInactive = () => {
+    if (statusFilters().active) setStatusFilters({status: 'inactive', active: false});
+    else setStatusFilters({status: 'inactive', active: true});
+    console.log(statusFilters());
+  };
 
   return (
     <header style={ !activeQuery() ? fullDisplay : halfDisplay}>
@@ -47,11 +78,11 @@ export  default function Header(props) {
       <h1 class="queries">{`${queries().length}`} queries</h1>
       <div style={infoContainer}>
       <nav class="statusGrid">
-        <div class="statusBtn" style={fresh() ? someFresh : noneFresh}>fresh ({fresh()})</div>
-        <div class="statusBtn" style={loading() ? someLoading : noneLoading}>fetching ({loading()})</div>
-        <div class="statusBtn" style={paused() ? somePaused : nonePaused}>paused ({paused()})</div>
-        <div class="statusBtn" style={stale() ? someStale : noneStale}>stale ({stale()})</div>
-        <div class="statusBtn" style={inactive() ? someInactive : noneInactive}>inactive ({inactive()})</div>
+        <div class="statusBtn" style={fresh() ? someFresh : noneFresh} onClick={setFresh}>fresh ({fresh()})</div>
+        <div class="statusBtn" style={loading() ? someLoading : noneLoading} onClick={setFetching}>fetching ({loading()})</div>
+        <div class="statusBtn" style={paused() ? somePaused : nonePaused} onClick={setPaused}>paused ({paused()})</div>
+        <div class="statusBtn" style={stale() ? someStale : noneStale} onClick={setStale}>stale ({stale()})</div>
+        <div class="statusBtn" style={inactive() ? someInactive : noneInactive} onClick={setInactive}>inactive ({inactive()})</div>
       </nav>
       <div style={sortOptions}>
       <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter(e.target.value)}}></input>

@@ -1,12 +1,3 @@
-// NOTE: It's likely that not all queries will exactly match the shape required by 
-// the constant definitions within the <For> component. It may be necessary to 
-// include some conditional logic there to ensure that all props are properly 
-// captured and passed to the <SingleKey> components.
-
-// ALSO: Ideally the data() passed into <For> will automatically update any time
-// the corresponding resource is updated (currently onMount), but this 
-// isn't built out yet.
-
 import SingleKey from './SingleKey';
 import { For, useContext, createSignal } from 'solid-js';
 import { QueryContext } from "./QueryContext";
@@ -14,11 +5,12 @@ import { useQueryClient } from "@tanstack/solid-query";
 
 export default function QueryKeyList (props)   {
 
- const {queries, setQueries} = useContext(QueryContext)
- const {status, setStatus} = useContext(QueryContext)
- const {sort} = useContext(QueryContext)
- const {sortReverse} = useContext(QueryContext)
- const {filter} = useContext(QueryContext)
+ const {queries, setQueries} = useContext(QueryContext);
+ const {status, setStatus} = useContext(QueryContext);
+ const {sort} = useContext(QueryContext);
+ const {sortReverse} = useContext(QueryContext);
+ const {filter} = useContext(QueryContext);
+ const { statusFilters, setStatusFilters } = useContext(QueryContext);
 
  const derivedQueries = () => {
   if (sort() === 'last-updated') {
@@ -29,6 +21,32 @@ export default function QueryKeyList (props)   {
       if (nameA < nameB) return 1;
       console.log(nameA)
     })
+
+    // fetching
+    if (statusFilters().active && statusFilters().status === 'fetching') {
+      toReturn = toReturn.filter(query => query.state.fetchStatus == 'fetching');
+    }
+
+    // paused
+    else if (statusFilters().active && statusFilters().status === 'paused') {
+      toReturn = toReturn.filter(query => query.state.fetchStatus == 'paused');
+    }
+
+    // fresh
+    else if (statusFilters().active && statusFilters().status === 'fresh') {
+      toReturn = toReturn.filter(query => !query.isStale() && query.getObserversCount());
+    }
+
+    // stale
+    else if (statusFilters().active && statusFilters().status === 'stale') {
+      toReturn = toReturn.filter(query => query.isStale());
+    }
+
+    // inactive
+    else if (statusFilters().active && statusFilters().status === 'inactive') {
+      toReturn = toReturn.filter(query => !query.observers.length);
+    }
+
 
     if (filter().length) {
       return sortReverse() ? toReturn.reverse().filter((query) => query.queryHash.includes(filter())) : toReturn.filter((query) => query.queryHash.includes(filter()))
