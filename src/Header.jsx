@@ -16,8 +16,8 @@ import logo from "./assets/SquidLogo.png";
   const noneStale = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)" };
   const someStale = { "background-color": "rgb(255, 169, 8)", "color": "black" };
   //Inactive
-  const noneInactive = { "background-color": "gray", "color": "rgb(89, 98, 109)" };
-  const someInactive = { "background-color": "gray", "color": "white" };
+  const noneInactive = { "background-color": "rgb(63, 78, 96)", "opacity": "0.3", };
+  const someInactive = { "background-color": "rgb(63, 78, 96)", "color": "white" };
 
 
   //Styles for Heading display
