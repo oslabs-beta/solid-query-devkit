@@ -5,8 +5,8 @@ import { useQueryClient } from "@tanstack/solid-query";
 //Styles for observers box
 const stylings = {
   fresh: {"background-color": "green", "color": "white", "font-weight": "bold"},
-  inactive: {"background-color": "gray", "color": "white", "font-weight": "bold"},
-  stale: {"background-color": "rgb(255, 169, 8)", "color": "white", "font-weight": "bold"},
+  inactive: {"background-color": "rgb(63, 78, 96)", "color": "white", "font-weight": "bold"},
+  stale: {"background-color": "rgb(255, 169, 8)", "color": "black", "font-weight": "bold"},
   fetching: {"background-color": "blue", "color": "white", "font-weight": "bold"},
   paused: {"background-color": "rgb(150, 71, 166)", "color": "white", "font-weight": "bold"},
 }
