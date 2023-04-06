@@ -43,31 +43,36 @@ export  default function Header(props) {
   const inactive = () => queries().filter((query) => !query.getObserversCount()).length;
 
   const setFresh = () => {
-    if (statusFilters().active) setStatusFilters({status: 'fresh', active: false});
+    if (statusFilters().active && statusFilters().status === 'fresh') setStatusFilters({status: 'fresh', active: false});
+    else if (statusFilters().active && statusFilters().status !== 'fresh') setStatusFilters({status: 'fresh', active: true});
     else setStatusFilters({status: 'fresh', active: true});
     console.log('hey', statusFilters());
   };
 
   const setFetching = () => {
-    if (statusFilters().active) setStatusFilters({status: 'fetching', active: false});
+    if (statusFilters().active && statusFilters().status === 'fetching') setStatusFilters({status: 'fetching', active: false});
+    else if (statusFilters().active && statusFilters().status !== 'fetching') setStatusFilters({status: 'fetching', active: true});
     else setStatusFilters({status: 'fetching', active: true});
     console.log(statusFilters());
   };
 
   const setPaused = () => {
-    if (statusFilters().active) setStatusFilters({status: 'paused', active: false});
+    if (statusFilters().active && statusFilters().status === 'paused') setStatusFilters({status: 'paused', active: false});
+    else if (statusFilters().active && statusFilters().status !== 'paused') setStatusFilters({status: 'paused', active: true});
     else setStatusFilters({status: 'paused', active: true});
     console.log(statusFilters());
   };
 
   const setStale = () => {
-    if (statusFilters().active) setStatusFilters({status: 'stale', active: false});
+    if (statusFilters().active && statusFilters().status === 'stale') setStatusFilters({status: 'stale', active: false});
+    else if (statusFilters().active && statusFilters().status !== 'stale') setStatusFilters({status: 'stale', active: true});
     else setStatusFilters({status: 'stale', active: true});
     console.log(statusFilters());
   };
 
   const setInactive = () => {
-    if (statusFilters().active) setStatusFilters({status: 'inactive', active: false});
+    if (statusFilters().active && statusFilters().status === 'inactive') setStatusFilters({status: 'inactive', active: false});
+    else if (statusFilters().active && statusFilters().status !== 'inactive') setStatusFilters({status: 'inactive', active: true});
     else setStatusFilters({status: 'inactive', active: true});
     console.log(statusFilters());
   };
