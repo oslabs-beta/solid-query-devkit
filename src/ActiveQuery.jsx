@@ -6,36 +6,29 @@ import { useQueryClient } from "@tanstack/solid-query";
 
 
 export default function ActiveQuery()   {
+    const { activeQuery, setActiveQuery, setShowData } = useContext(QueryContext);
 
     const queryClient = useQueryClient()
 
-    const { activeQuery, setActiveQuery } = useContext(QueryContext);
-    const { showData, setShowData } = useContext(QueryContext);
-
-    const refetch = () => {
-        queryClient.refetchQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
-        console.log('query refetched: ', activeQuery());
-    }
-
-    const invalidate = async () => {
-        await queryClient.invalidateQueries({
-            queryKey: JSON.parse(activeQuery().queryHash),
-            exact: true,
-            refetchType: 'active',
-        });
-        console.log('query invalidated');
-    }
-
-    const reset = () => {
-        queryClient.resetQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
-        console.log('query reset');
-    }
-
-    const remove = () => {
-        setShowData(false);
-        queryClient.removeQueries({ queryKey: JSON.parse(activeQuery().queryHash), exact: true });
-        setActiveQuery();
-        console.log('query removed');
+    const queryFunctions = {
+        refetch: () => {
+            queryClient.refetchQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
+        },
+        invalidate: async () => {
+            await queryClient.invalidateQueries({
+                queryKey: JSON.parse(activeQuery().queryHash),
+                exact: true,
+                refetchType: 'active',
+            });
+        },
+        reset: () => {
+            queryClient.resetQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
+        },
+        remove: () => {
+            setShowData(false);
+            queryClient.removeQueries({ queryKey: JSON.parse(activeQuery().queryHash), exact: true });
+            setActiveQuery();
+        }
     }
 
     return (
@@ -48,10 +41,10 @@ export default function ActiveQuery()   {
                     <h3>Actions</h3>
                 </div>
                 <div class="queryActionsButtons">
-                    <button id="refetch" onClick={refetch}>Refetch</button>
-                    <button id="invalidate" onClick={invalidate}>Invalidate</button>
-                    <button id="reset" onClick={reset}>Reset</button>
-                    <button id="remove" onClick={remove}>Remove</button>
+                    <button id="refetch" onClick={queryFunctions['refetch']}>Refetch</button>
+                    <button id="invalidate" onClick={queryFunctions['invalidate']}>Invalidate</button>
+                    <button id="reset" onClick={queryFunctions['reset']}>Reset</button>
+                    <button id="remove" onClick={queryFunctions['remove']}>Remove</button>
                 </div>
             </section>
             <div class="dataExplorer">

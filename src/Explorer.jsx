@@ -1,6 +1,4 @@
 import { ObjectComponent } from "./JSONComponents/ObjectComponent"
-import { useContext } from "solid-js";
-import { QueryContext } from "./QueryContext";
 
 export default function Explorer(props)   {
     return (

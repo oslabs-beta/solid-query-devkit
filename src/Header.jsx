@@ -83,7 +83,7 @@ export  default function Header(props) {
         <div class="statusBtn" style={styler(inactive, 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({inactive()})</div>
       </nav>
       <div style={sortOptions}>
-      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter(e.target.value)}}></input>
+      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter(e.target.value.toLowerCase())}}></input>
       <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort(e.target.value)}>
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>

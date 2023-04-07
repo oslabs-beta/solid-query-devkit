@@ -8,7 +8,6 @@ import { QueryContext } from "./QueryContext";
 export default function SolidQueryDevtools(props) {
 
   //Signals imported from Query Context 
-  const { queries } = useContext(QueryContext);
   const { showModal, setShowModal } = useContext(QueryContext);
   const { showData } = useContext(QueryContext);
 
@@ -57,9 +56,9 @@ export default function SolidQueryDevtools(props) {
         <Match when={showModal() === false}>
           <button id="showModal" class="toggle" onclick={() => {
             setShowModal(true);
-            console.log("THE MODAL HAS BEEN CHANGED TO:", showModal());
-          }
-          }><img src={logo} width='75pxvw' height='75px'></img></button>
+          }}>
+            <img src={logo} width='75pxvw' height='75px'></img>
+          </button>
         </Match>
       </Switch>
     </>
