@@ -1,6 +1,6 @@
 import { useContext, createSignal } from "solid-js";
 import { QueryContext } from "./QueryContext";
-import { useQueryClient } from "@tanstack/solid-query";
+import { getQueryStatus } from './Helpers'
 
 //Styles for observers box
 const stylings = {
@@ -19,29 +19,16 @@ export default function SingleKey(props) {
   const [backgroundColor, setBackgroundColor] = createSignal('');
 
   const query = () => {
-    return queries().filter((query) => query.queryHash === props.key)[0];
+    return queries().find((query) => query.queryHash === props.key);
   }
-
-  function findStatus(query) {
-    if (query.state.fetchStatus == 'fetching') return 'fetching'
-    if (query.state.fetchStatus == 'paused') return 'paused'
-    if (!query.isStale() && query.getObserversCount()) return 'fresh';
-    if (query.isStale()) return 'stale'
-    if (!query.observers.length) return 'inactive'
-  }
-
-  //onClick, the button will set the activeQuery to query
-  //the setShowData signal will also be activated, opening the side modal
-
 
   return (
     <section class="queryKey">
-      <div class="observers" style={stylings[findStatus(query())]}>{query().observers.length}</div>
+      <div class="observers" style={stylings[getQueryStatus(query())]}>{query().observers.length}</div>
       <div id="singleKey" style={backgroundColor()} onClick={() => {
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
         });
-        // let queryHash = query().queryHash;
         if (activeQuery() == undefined || activeQuery().queryHash !== props.key)  {
           setActiveQuery(query());
           setShowData(true);
