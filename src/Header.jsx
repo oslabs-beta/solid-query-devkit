@@ -5,24 +5,24 @@ import logo from "./assets/SquidLogo.png";
   //Style Variables for Status Backgrounds: 
   //Loading
   const noneLoading = { "background-color": "rgb(14, 46, 96)", "color": "rgb(89, 98, 109)" };
-  const noneLoadingFiltered = { "background-color": "rgb(14, 46, 96)", "color": "rgb(89, 98, 109)", "border-color": "white", "border-style": "solid" };
+  const noneLoadingFiltered = { "background-color": "rgb(14, 46, 96)", "color": "rgb(89, 98, 109)", "border": "0.2em solid white" };
   const someLoading = { "background-color": "blue", "color": "white" };
-  const someLoadingFiltered = { "background-color": "blue", "color": "white", "border-color": "white", "border-style": "solid" };
+  const someLoadingFiltered = { "background-color": "blue", "color": "white", "border": "0.5em solid white" };
   //Fresh
   const noneFresh = { "background-color": "rgb(16, 66, 53)", "color": "rgb(89, 98, 109)" };
-  const noneFreshFiltered = { "background-color": "rgb(16, 66, 53)", "color": "rgb(89, 98, 109)", "border-color": "white", "border-style": "solid" };
+  const noneFreshFiltered = { "background-color": "rgb(16, 66, 53)", "color": "rgb(89, 98, 109)", "border": "0.2em solid white" };
   const someFresh = { "background-color": "green", "color": "white" };
   const someFreshFiltered = { "background-color": "green", "color": "white", "border-color": "white", "border-style": "solid" };
   //Paused
   const nonePaused = { "background-color": "rgb(140, 73, 235)", "color": "white", "opacity": "0.3" };
-  const nonePausedFiltered = { "background-color": "rgba(60,46,109)", "color": "rgb(89, 98, 109)", "border-color": "white", "border-style": "solid" };
+  const nonePausedFiltered = { "background-color": "rgba(60,46,109)", "color": "rgb(89, 98, 109)", "border": "0.2em solid white" };
   const somePaused = { "background-color": "rgb(140, 73, 235)", "color": "white" };
-  const somePausedFiltered = { "background-color": "rgb(140, 73, 235)", "color": "white", "border-color": "white", "border-style": "solid" };
+  const somePausedFiltered = { "background-color": "rgb(140, 73, 235)", "color": "white", "border": "0.2em solid white" };
   //Stale
   const noneStale = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)" };
-  const noneStaleFiltered = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)", "border-color": "white", "border-style": "solid" };
+  const noneStaleFiltered = { "background-color": "rgb(204, 150, 49)", "color": "rgb(89, 98, 109)", "border": "0.2em solid white" };
   const someStale = { "background-color": "rgb(255, 169, 8)", "color": "black" };
-  const someStaleFiltered = { "background-color": "rgb(255, 169, 8)", "color": "black", "border-color": "white", "border-style": "solid" };
+  const someStaleFiltered = { "background-color": "rgb(255, 169, 8)", "color": "black", "border": "0.2em solid white" };
   //Inactive
   const noneInactive = { "background-color": "rgb(63, 78, 96)", "opacity": "0.3" };
   const noneInactiveFiltered = { "background-color": "rgb(35,48,67)", "border-color": "white", "border-style": "solid", "color": "rgb(89, 98, 109)" };
