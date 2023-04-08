@@ -1,8 +1,3 @@
-import { useContext } from "solid-js";
-import { QueryContext } from "../QueryContext";
-
-
-
 const style = {
   color: 'rgba(170, 170, 170, 0.851)'
 }

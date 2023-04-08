@@ -26,12 +26,12 @@ export function getQueryStatus(query) {
   if (!query.observers.length) return 'inactive'
 }
 
-export function filterQueries(queries, filterText, statusFilters) {
+export function filterQueries(queries, filter) {
   return queries.filter((query) =>  {
-    if (statusFilters.active) {
-      return query.queryHash.toLowerCase().includes(filterText) && getQueryStatus(query) === statusFilters.status
+    if (filter.status) {
+      return query.queryHash.toLowerCase().includes(filter.text) && getQueryStatus(query) === filter.status
     } else {
-      return query.queryHash.toLowerCase().includes(filterText)
+      return query.queryHash.toLowerCase().includes(filter.text)
     }
   })
 }

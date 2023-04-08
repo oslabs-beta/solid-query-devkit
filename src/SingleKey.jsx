@@ -13,7 +13,7 @@ const stylings = {
 
 
 export default function SingleKey(props) {
-  const { activeQuery, setActiveQuery, queries, setShowData } = useContext(QueryContext);
+  const { activeQuery, setActiveQuery, queries } = useContext(QueryContext);
 
   //signal to set style:
   const [backgroundColor, setBackgroundColor] = createSignal('');
@@ -31,9 +31,7 @@ export default function SingleKey(props) {
         });
         if (activeQuery() == undefined || activeQuery().queryHash !== props.key)  {
           setActiveQuery(query());
-          setShowData(true);
         } else {
-          setShowData(false);
           setActiveQuery(undefined);
         }
       }

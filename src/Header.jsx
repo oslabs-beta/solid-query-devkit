@@ -1,6 +1,7 @@
 import { QueryContext } from "./QueryContext";
 import { useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
+import { getQueryStatus } from './Helpers';
 
   //Style Variables for Status Backgrounds: 
   //Loading
@@ -14,7 +15,7 @@ import logo from "./assets/SquidLogo.png";
   const someFresh = { "background-color": "green", "color": "white" };
   const someFreshFiltered = { "background-color": "green", "color": "white", "border-color": "white", "border-style": "solid" };
   //Paused
-  const nonePaused = { "background-color": "rgb(140, 73, 235)", "color": "white", "opacity": "0.3" };
+  const nonePaused = { "background-color": "rgba(60,46,109)", "color": "white", "opacity": "0.3" };
   const nonePausedFiltered = { "background-color": "rgba(60,46,109)", "color": "rgb(89, 98, 109)", "border": "0.2em solid white" };
   const somePaused = { "background-color": "rgb(140, 73, 235)", "color": "white" };
   const somePausedFiltered = { "background-color": "rgb(140, 73, 235)", "color": "white", "border": "0.2em solid white" };
@@ -37,36 +38,42 @@ import logo from "./assets/SquidLogo.png";
   const sortOptions = {"display": "flex", "justify-content": "space-around", "width": "100%", "margin": "0.5em 0"}
 
 
-export  default function Header(props) {
+export  default function Header() {
   const { queries } = useContext(QueryContext);
-  const { setSort } = useContext(QueryContext);
-  const { sortReverse, setSortReverse } = useContext(QueryContext);
-  const { setFilter } = useContext(QueryContext);
+  const { sort, setSort } = useContext(QueryContext);
+  const { filter, setFilter } = useContext(QueryContext);
   const { setShowModal } = useContext(QueryContext);
   const { activeQuery } = useContext(QueryContext);
-  const { loading } = useContext(QueryContext);
-  const { statusFilters, setStatusFilters } = useContext(QueryContext);
 
   // checker functions that are passed into the styler function
-  const fresh = () => queries().filter((query) => !query.isStale() && query.getObserversCount()).length;
-  const paused = () => queries().filter((query) => query.state.fetchStatus === "paused").length;
-  const stale = () => queries().filter((query) => query.isStale()).length;
-  const inactive = () => queries().filter((query) => !query.getObserversCount()).length;
 
+  const queryStatuses = () => {
+    const statuses = {
+    fresh: 0,
+    fetching: 0,
+    paused: 0,
+    stale: 0,
+    inactive: 0
+  }
+  queries().forEach((query) => {
+    const status = getQueryStatus(query);
+    statuses[status]++
+  })
+
+  return statuses
+  }
+  
   // function to be invoked on status button click
   const applyStatusFilter = (buttonStatus) => {
-    if (statusFilters().active && statusFilters().status === buttonStatus) setStatusFilters({status: buttonStatus, active: false});
-    else if (statusFilters().active && statusFilters().status !== buttonStatus) setStatusFilters({status: buttonStatus, active: true});
-    else setStatusFilters({status: buttonStatus, active: true});
+    if (filter().status === buttonStatus) setFilter({...filter(), status: ''});
+    else if (filter().status !== buttonStatus) setFilter({...filter(), status: buttonStatus});
   }
 
   // styler functions to be invoked inside the style attribute of the status buttons
   const styler = (checkerFunc, buttonStatus, stylingForSome, stylingForNone, stylingForSomeFiltered, stylingForNoneFiltered) => {
-    if ((checkerFunc() && statusFilters().status !== buttonStatus)
-    || (checkerFunc() && statusFilters().status === buttonStatus && !statusFilters().active)) return stylingForSome;
-    if ((!checkerFunc() && statusFilters().status !== buttonStatus)
-    || (!checkerFunc() && statusFilters().status === buttonStatus && !statusFilters().active)) return stylingForNone;
-    if (checkerFunc() && statusFilters().status === buttonStatus && statusFilters().active) return stylingForSomeFiltered;
+    if (checkerFunc && filter().status !== buttonStatus) return stylingForSome;
+    if (!checkerFunc && filter().status !== buttonStatus) return stylingForNone;
+    if (checkerFunc && filter().status === buttonStatus) { console.log('should be here'); return stylingForSomeFiltered;}
     else return stylingForNoneFiltered;
   }
 
@@ -76,19 +83,19 @@ export  default function Header(props) {
       <h1 class="queries">{`${queries().length}`} queries</h1>
       <div style={infoContainer}>
       <nav class="statusGrid">
-        <div class="statusBtn" style={styler(fresh, 'fresh', someFresh, noneFresh, someFreshFiltered, noneFreshFiltered)} onClick={() => applyStatusFilter('fresh')}>fresh ({fresh()})</div>
-        <div class="statusBtn" style={styler(loading, 'fetching', someLoading, noneLoading, someLoadingFiltered, noneLoadingFiltered)} onClick={() => applyStatusFilter('fetching')}>fetching ({loading()})</div>
-        <div class="statusBtn" style={styler(paused, 'paused', somePaused, nonePaused, somePausedFiltered, nonePausedFiltered)} onClick={() => applyStatusFilter('paused')}>paused ({paused()})</div>
-        <div class="statusBtn" style={styler(stale, 'stale', someStale, noneStale, someStaleFiltered, noneStaleFiltered)} onClick={() => applyStatusFilter('stale')}>stale ({stale()})</div>
-        <div class="statusBtn" style={styler(inactive, 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({inactive()})</div>
+        <div class="statusBtn" style={styler(queryStatuses()['fresh'], 'fresh', someFresh, noneFresh, someFreshFiltered, noneFreshFiltered)} onClick={() => applyStatusFilter('fresh')}>fresh ({queryStatuses()['fresh']})</div>
+        <div class="statusBtn" style={styler(queryStatuses()['fetching'], 'fetching', someLoading, noneLoading, someLoadingFiltered, noneLoadingFiltered)} onClick={() => applyStatusFilter('fetching')}>fetching ({queryStatuses()['fetching']})</div>
+        <div class="statusBtn" style={styler(queryStatuses()['paused'], 'paused', somePaused, nonePaused, somePausedFiltered, nonePausedFiltered)} onClick={() => applyStatusFilter('paused')}>paused ({queryStatuses()['paused']})</div>
+        <div class="statusBtn" style={styler(queryStatuses()['stale'], 'stale', someStale, noneStale, someStaleFiltered, noneStaleFiltered)} onClick={() => applyStatusFilter('stale')}>stale ({queryStatuses()['stale']})</div>
+        <div class="statusBtn" style={styler(queryStatuses()['inactive'], 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({queryStatuses()['inactive']})</div>
       </nav>
       <div style={sortOptions}>
-      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter(e.target.value.toLowerCase())}}></input>
+      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter({text: e.target.value.toLowerCase()})}}></input>
       <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort(e.target.value)}>
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
-      <button id="ascBtn" onClick={() => setSortReverse(!sortReverse())}>{ sortReverse() ? '\u2191 Asc' : '\u2193 Dec'}</button>
+      <button id="ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
       </div>
       </div>
      

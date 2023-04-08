@@ -21,8 +21,6 @@ export default function PokeName(props) {
   },
   )
 
-
-
   return(
     <div>
       <button onClick={() => {

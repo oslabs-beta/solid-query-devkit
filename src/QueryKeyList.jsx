@@ -5,16 +5,12 @@ import {sortQueries, filterQueries} from './Helpers'
 
 export default function QueryKeyList(props) {
 
-  const { queries } = useContext(QueryContext);
-  const { sort } = useContext(QueryContext);
-  const { sortReverse } = useContext(QueryContext);
-  const { filter } = useContext(QueryContext);
-  const { statusFilters } = useContext(QueryContext);
+  const { queries, sort, filter } = useContext(QueryContext);
 
   const derivedQueries = () => {
-    return sortReverse() ? 
-    filterQueries(sortQueries(queries(), sort()), filter(), statusFilters()).reverse()
-    : filterQueries(sortQueries(queries(), sort()), filter(), statusFilters())
+    return sort().reverse ? 
+    filterQueries(sortQueries(queries(), sort().type), filter()).reverse()
+    : filterQueries(sortQueries(queries(), sort().type), filter())
   }
 
   return (
