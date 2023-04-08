@@ -1,36 +1,23 @@
 import QueryKeyList from "./QueryKeyList";
 import ActiveQuery from "./ActiveQuery";
 import Header from "./Header";
-import { createSignal, createEffect, Match, useContext } from "solid-js";
+import {  Match, useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 import { QueryContext } from "./QueryContext";
 
 export default function SolidQueryDevtools(props) {
 
   //Signals imported from Query Context 
-  const { showModal, setShowModal } = useContext(QueryContext);
-  const { showData } = useContext(QueryContext);
+  const { showModal, setShowModal, activeQuery } = useContext(QueryContext);
 
   // IDEA: repurpose viewWidth signal to contain either an empty string at initialization,
   // or a string with a class/id identifier (e.g., "responsive")
   // whatever that signal is will be added via brackets as an attribute on the left container div,
   // but only conditionally, based on the create effect below. 
 
-  const [viewWidth, setViewWidth] = createSignal('wide');
-
-  //Modal Controls:
-  createEffect(() => {
-    //if Modal is open and Query Content is being shown, change the style width to be 50vw
-    if (showData() === true && showModal() === true) {
-      setViewWidth('narrow');
-    }
-    if (showData() === false && showModal() === true) {
-      setViewWidth('wide');
-    }
-  });
+  const viewWidth = () => activeQuery() ? 'narrow' : 'wide'
 
   return (
-
     <>
       <Switch>
         <Match when={showModal() === true}>
@@ -43,7 +30,7 @@ export default function SolidQueryDevtools(props) {
                   <QueryKeyList />
                 </div>
               </div>
-              <Show when={showData() === true}>
+              <Show when={activeQuery()}>
                 <div class="rightContainer">
                   <section class="queryContent">
                     <ActiveQuery />

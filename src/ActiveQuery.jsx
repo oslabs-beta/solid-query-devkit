@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/solid-query";
 
 
 export default function ActiveQuery()   {
-    const { activeQuery, setActiveQuery, setShowData } = useContext(QueryContext);
+    const { activeQuery, setActiveQuery } = useContext(QueryContext);
 
     const queryClient = useQueryClient()
 
@@ -25,9 +25,9 @@ export default function ActiveQuery()   {
             queryClient.resetQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
         },
         remove: () => {
-            setShowData(false);
-            queryClient.removeQueries({ queryKey: JSON.parse(activeQuery().queryHash), exact: true });
+            const hash = JSON.parse(activeQuery().queryHash)
             setActiveQuery();
+            queryClient.removeQueries({ queryKey: hash, exact: true });
         }
     }
 

@@ -7,7 +7,7 @@ export default function OverviewData()   {
   const {activeQuery, queries} = useContext(QueryContext);
 
   const queryStatus = () => getQueryStatus(queries().find(query => query.queryHash === activeQuery().queryHash));
-  const queryArr = JSON.parse(activeQuery().queryHash);
+  const queryArr = () => JSON.parse(activeQuery().queryHash);
 
   const statusStyles = {
     fetching: "background-color:blue; color:white",
@@ -16,7 +16,6 @@ export default function OverviewData()   {
     stale: "background-color:rgb(255, 169, 8); color:black",
     inactive: "background-color:gray; color:white",
   }
-
 
   function normalTime() {
     const unixTime = activeQuery().state.dataUpdatedAt;
@@ -34,10 +33,10 @@ export default function OverviewData()   {
         <div style={"display: flex; justify-content: space-between;"}>
           <div>
             <div>{'['}</div>
-            <For each={queryArr}>
+            <For each={queryArr()}>
               {(el, i) => {
                 let comma = ',';
-                if (i() === queryArr.length - 1) comma = '';
+                if (i() === queryArr().length - 1) comma = '';
                 if (typeof el === 'string') {
                   return <div style={"margin-left: 20px;" }>{`\"${el}\"${comma}`}</div>
                 }
