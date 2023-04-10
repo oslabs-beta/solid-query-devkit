@@ -1,5 +1,5 @@
 import { QueryContext } from "./QueryContext";
-import { useContext, For, createSignal } from "solid-js";
+import { useContext, For } from "solid-js";
 import { getQueryStatus } from './Helpers'
 
 export default function OverviewData()   {

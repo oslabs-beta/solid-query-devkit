@@ -1,4 +1,4 @@
-import { useQueryClient, QueryCache, createQuery } from '@tanstack/solid-query'
+import { useQueryClient, createQuery } from '@tanstack/solid-query'
 import { createSignal } from 'solid-js'
 
 export default function PokeName(props) {

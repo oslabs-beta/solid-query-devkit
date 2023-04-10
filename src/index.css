@@ -68,7 +68,7 @@ body {
   width: 50vw;
   height: 99%;
   border-left: solid rgba(33 39 55) 2px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 

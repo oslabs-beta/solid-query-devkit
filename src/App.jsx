@@ -36,9 +36,7 @@ function App() {
         <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
           }
       </For>
-      <QueryProvider>
         <SolidQueryDevtools />
-      </QueryProvider>
      
     </>
   );
