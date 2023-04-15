@@ -37,7 +37,7 @@ export default function ActiveQuery()   {
                 <OverviewData />
             </div>
             <section class="queryActions">
-                <div class="queryActionsHeader">
+                <div class="detailsHeader">
                     <h3>Actions</h3>
                 </div>
                 <div class="queryActionsButtons">

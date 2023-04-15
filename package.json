@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@tanstack/react-query-devtools": "^4.28.0",
-    "@tanstack/solid-query": "^4.27.0",
+    "@tanstack/solid-query": "^4.29.1",
     "solid-js": "^1.6.10"
   }
 }
