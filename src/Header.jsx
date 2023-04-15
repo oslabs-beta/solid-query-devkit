@@ -91,15 +91,15 @@ export  default function Header() {
       </nav>
       <div style={sortOptions}>
       <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter({text: e.target.value.toLowerCase()})}}></input>
-      <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort(e.target.value)}>
+      <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort({...sort(), type: e.target.value})}>
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
-      <button id="ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
+      <button class="ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
       </div>
       </div>
      
-      <button class="closeModal" onclick={() => setShowModal(false)}>Close</button>
+      <button class="ascBtn" onclick={() => setShowModal(false)}>Close</button>
     </header>
   )
 }
