@@ -1,21 +1,32 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
+  "name": "solid-query-devtools",
+  "version": "1.0.0",
+  "description": "Solid Query Devtools",
+  "main": "./src/SolidQueryDevtools.jsx",
   "scripts": {
-    "start": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/SQuiD.git"
+  },
+  "keywords": [
+    "Solid",
+    "Query",
+    "Devtools"
+  ],
+  "author": "Lloyd Bistany, Truett Davis, Peter Ko, Dakota McPherson",
   "license": "MIT",
-  "devDependencies": {
-    "vite": "^4.1.1",
-    "vite-plugin-solid": "^2.5.0"
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/SQuiD/issues"
   },
+  "homepage": "https://github.com/oslabs-beta/SQuiD#readme",
   "dependencies": {
-    "@tanstack/react-query-devtools": "^4.28.0",
     "@tanstack/solid-query": "^4.29.1",
-    "solid-js": "^1.6.10"
+    "path": "^0.12.7",
+    "vite": "^4.2.1",
+    "vite-plugin-solid": "^2.7.0"
   }
 }
