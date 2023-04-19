@@ -168,14 +168,14 @@ function Header() {
   return (
     <header class='sqd-header' style={ !activeQuery() ? fullDisplay : halfDisplay}>
       <img src={logo} width='65pxvw' height='65px' class="sqd-closeModal" onclick={() => setShowModal(false)}></img>
-      <h1 class="queries">{`${queries().length}`} queries</h1>
+      <h1 class="sqd-queries">{`${queries().length}`} queries</h1>
       <div style={infoContainer}>
-      <nav class="statusGrid">
-        <div class="statusBtn" style={styler(queryStatuses()['fresh'], 'fresh', someFresh, noneFresh, someFreshFiltered, noneFreshFiltered)} onClick={() => applyStatusFilter('fresh')}>fresh ({queryStatuses()['fresh']})</div>
-        <div class="statusBtn" style={styler(queryStatuses()['fetching'], 'fetching', someLoading, noneLoading, someLoadingFiltered, noneLoadingFiltered)} onClick={() => applyStatusFilter('fetching')}>fetching ({queryStatuses()['fetching']})</div>
-        <div class="statusBtn" style={styler(queryStatuses()['paused'], 'paused', somePaused, nonePaused, somePausedFiltered, nonePausedFiltered)} onClick={() => applyStatusFilter('paused')}>paused ({queryStatuses()['paused']})</div>
-        <div class="statusBtn" style={styler(queryStatuses()['stale'], 'stale', someStale, noneStale, someStaleFiltered, noneStaleFiltered)} onClick={() => applyStatusFilter('stale')}>stale ({queryStatuses()['stale']})</div>
-        <div class="statusBtn" style={styler(queryStatuses()['inactive'], 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({queryStatuses()['inactive']})</div>
+      <nav class="sqd-statusGrid">
+        <div class="sqd-statusBtn" style={styler(queryStatuses()['fresh'], 'fresh', someFresh, noneFresh, someFreshFiltered, noneFreshFiltered)} onClick={() => applyStatusFilter('fresh')}>fresh ({queryStatuses()['fresh']})</div>
+        <div class="sqd-statusBtn" style={styler(queryStatuses()['fetching'], 'fetching', someLoading, noneLoading, someLoadingFiltered, noneLoadingFiltered)} onClick={() => applyStatusFilter('fetching')}>fetching ({queryStatuses()['fetching']})</div>
+        <div class="sqd-statusBtn" style={styler(queryStatuses()['paused'], 'paused', somePaused, nonePaused, somePausedFiltered, nonePausedFiltered)} onClick={() => applyStatusFilter('paused')}>paused ({queryStatuses()['paused']})</div>
+        <div class="sqd-statusBtn" style={styler(queryStatuses()['stale'], 'stale', someStale, noneStale, someStaleFiltered, noneStaleFiltered)} onClick={() => applyStatusFilter('stale')}>stale ({queryStatuses()['stale']})</div>
+        <div class="sqd-statusBtn" style={styler(queryStatuses()['inactive'], 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({queryStatuses()['inactive']})</div>
       </nav>
       <div style={sortOptions}>
       <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter({text: e.target.value.toLowerCase()})}}></input>
@@ -183,11 +183,11 @@ function Header() {
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
-      <button class="ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
+      <button class="sqd-ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
       </div>
       </div>
     
-      <button class="ascBtn" onclick={() => setShowModal(false)}>Close</button>
+      <button class="sqd-ascBtn" onclick={() => setShowModal(false)}>Close</button>
     </header>
   )
 }
@@ -218,10 +218,10 @@ function QueryKeyList(props) {
 function Explorer(props)   {
   return (
       <>
-      <div class="detailsHeader">
+      <div class="sqd-detailsHeader">
           <h3>{props.name}</h3>
       </div>
-      <div class="object-component">
+      <div class="sqd-object-component">
       <ObjectComponent obj={props.obj || {}} key={props.key} level={1}/>
       </div>
       </>
@@ -257,18 +257,18 @@ function ActiveQuery() {
 
   return (
       <section>
-          <div id="activeQuery">
+          <div id="sqd-activeQuery">
               <OverviewData />
           </div>
           <section class="queryActions">
-              <div class="detailsHeader">
+              <div class="sqd-detailsHeader">
                   <h3>Actions</h3>
               </div>
-              <div class="queryActionsButtons">
-                  <button id="refetch" onClick={queryFunctions['refetch']}>Refetch</button>
-                  <button id="invalidate" onClick={queryFunctions['invalidate']}>Invalidate</button>
-                  <button id="reset" onClick={queryFunctions['reset']}>Reset</button>
-                  <button id="remove" onClick={queryFunctions['remove']}>Remove</button>
+              <div class="sqd-queryActionsButtons">
+                  <button id="sqd-refetch" onClick={queryFunctions['refetch']}>Refetch</button>
+                  <button id="sqd-invalidate" onClick={queryFunctions['invalidate']}>Invalidate</button>
+                  <button id="sqd-reset" onClick={queryFunctions['reset']}>Reset</button>
+                  <button id="sqd-remove" onClick={queryFunctions['remove']}>Remove</button>
               </div>
           </section>
           <div class="dataExplorer">
@@ -305,7 +305,7 @@ function OverviewData()   {
 
   return (
     <>
-      <div class="detailsHeader">
+      <div class="sqd-detailsHeader">
         <h3>Query Details</h3>
       </div>
       <div class="queryDetailsData" style={"margin: 1em;"}>
@@ -359,9 +359,9 @@ function SingleKey(props) {
   }
 
   return (
-    <section class="queryKey">
-      <div class="observers" style={stylings[getQueryStatus(query())]}>{query().observers.length}</div>
-      <div id="singleKey" style={backgroundColor()} onClick={() => {
+    <section class="sqd-queryKey">
+      <div class="sqd-observers" style={stylings[getQueryStatus(query())]}>{query().observers.length}</div>
+      <div id="sqd-singleKey" style={backgroundColor()} onClick={() => {
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
         });
@@ -406,7 +406,7 @@ queryClient.queryCache.subscribe(() => {
             <div class="sqd-outerContainer">
               <div class="sqd-leftContainer" id={viewWidth()}>
                 <Header />
-                <div class="main">
+                <div class="sqd-main">
                   <QueryKeyList />
                 </div>
               </div>
