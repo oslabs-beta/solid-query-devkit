@@ -11,10 +11,11 @@ export default defineConfig({
     target: 'esnext',
     lib: {
       entry: resolve(__dirname, './src/SolidQueryDevtools.jsx'),
-      name: 'solid-query-devtool'
+      name: 'solid-query-devkit'
     },
   },
   rollupOptions: {
-    input: './src/SolidQueryDevtools.jsx'
+    input: './src/SolidQueryDevtools.jsx',
+    external: ['solid-js', '@tanstack/solid-query', 'path']
   }
 });

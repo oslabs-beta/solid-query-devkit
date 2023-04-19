@@ -1,13 +1,8 @@
 import Tool from "./Tool";
-import { QueryProvider } from "./QueryContext";
 
-export default function SolidQueryDevtools() {
+export default function SolidQueryDevtools(props) {
 
   return (
-    <QueryProvider >
-      <Tool />
-  </ QueryProvider>
+      <Tool queryClient={props.queryClient} />
   );
 };
-
-

@@ -1,7 +1,8 @@
 {
-  "name": "solid-query-devtools",
-  "version": "1.0.0",
-  "description": "Solid Query Devtools",
+  "name": "solid-query-devkit",
+  "version": "1.0.28",
+  "description": "Solid Query Devkit",
+  "type": "module",
   "main": "./src/SolidQueryDevtools.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,17 +16,23 @@
   "keywords": [
     "Solid",
     "Query",
-    "Devtools"
+    "Devkit"
   ],
-  "author": "Lloyd Bistany, Truett Davis, Peter Ko, Dakota McPherson",
+  "author": "Squid",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/oslabs-beta/SQuiD/issues"
   },
   "homepage": "https://github.com/oslabs-beta/SQuiD#readme",
   "dependencies": {
+
+  },
+  "peerDependencies": {
     "@tanstack/solid-query": "^4.29.1",
     "path": "^0.12.7",
+    "solid-js": "^1.7.3"
+  },
+  "devDependencies": {
     "vite": "^4.2.1",
     "vite-plugin-solid": "^2.7.0"
   }

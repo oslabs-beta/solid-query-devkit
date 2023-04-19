@@ -7,14 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.modal {
+.sqd-modal {
   background-color: rgb(13, 21, 32);
   height: 100%;
   min-height: 25vh;
   position: fixed;
   width: 100%;
   inset: 50vh 0 0 0;
-  z-index: var(--layer5);
+  z-index: 9999;
   resize: vertical;
   display: flex;
   border-style: none;
@@ -22,7 +22,7 @@ body {
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
-#showModal {
+#sqd-showModal {
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
@@ -31,40 +31,40 @@ body {
   width: 75px;
   bottom: 3%;
   right: 2%;
-
+  z-index: 9999;
 }
 
 
-.closeModal:hover {
+.sqd-closeModal:hover {
   background-color: rgb(83, 69, 69);
   cursor: pointer;
 }
 
-#showModal:hover {
+#sqd-showModal:hover {
   /* background-color: rgba(27 78 98);
   border-radius: 45px; */
   cursor: pointer;
 }
 
-.outerContainer {
+.sqd-outerContainer {
   display: flex;
   flex-direction: row;
   height: 50%;
 }
 
-.leftContainer  {
+.sqd-leftContainer  {
   overflow-y: scroll;
 }
 
-#narrow {
+#sqd-narrow {
   width: 50vw;
 }
 
-#wide {
+#sqd-wide {
   width: 100vw;
 }
 
-.rightContainer {
+.sqd-rightContainer {
   width: 50vw;
   height: 99%;
   border-left: solid rgba(33 39 55) 2px;
@@ -72,7 +72,7 @@ body {
 }
 
 
-header {
+.sqd-header {
   background-color: rgb(23, 35, 53);
   color: white;
   padding: 15px;
@@ -89,7 +89,6 @@ header nav ul {
   list-style-type: none;
   position: sticky;
   top: 0%;
-
 }
 
 .queries {
