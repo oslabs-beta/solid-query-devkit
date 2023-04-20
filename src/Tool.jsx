@@ -178,8 +178,8 @@ function Header() {
         <div class="sqd-statusBtn" style={styler(queryStatuses()['inactive'], 'inactive', someInactive, noneInactive, someInactiveFiltered, noneInactiveFiltered)} onClick={() => applyStatusFilter('inactive')}>inactive ({queryStatuses()['inactive']})</div>
       </nav>
       <div style={sortOptions}>
-      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em"}} onChange={(e) => {setFilter({text: e.target.value.toLowerCase()})}}></input>
-      <select name="sort" id="sort" style={{"border-radius": "5px"}} onChange={(e) => setSort({...sort(), type: e.target.value})}>
+      <input type="text" placeholder="Filter queries..." style={{"border-radius": "5px", "text-indent": "0.5em", "color": "black"}} onChange={(e) => {setFilter({text: e.target.value.toLowerCase()})}}></input>
+      <select name="sort" id="sort" style={{"border-radius": "5px", "color": "black"}} onChange={(e) => setSort({...sort(), type: e.target.value})}>
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
