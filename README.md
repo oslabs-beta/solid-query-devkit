@@ -38,7 +38,7 @@ Solid Query Devkit is an open source developer tool for Solid Query that allows 
 - just ensure that the < SolidQueryDevkit /> component is inside of the Solid Query < QueryClientProvider > wrapper
 
   <br>
-  <img src ="" width="300"/>
+  <img src ="./src/assets/Demo.png" width="300"/>
   <br>
 
 ## Show Your Support
