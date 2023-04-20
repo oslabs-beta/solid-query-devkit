@@ -161,7 +161,7 @@ function Header() {
   const styler = (checkerFunc, buttonStatus, stylingForSome, stylingForNone, stylingForSomeFiltered, stylingForNoneFiltered) => {
     if (checkerFunc && filter().status !== buttonStatus) return stylingForSome;
     if (!checkerFunc && filter().status !== buttonStatus) return stylingForNone;
-    if (checkerFunc && filter().status === buttonStatus) { console.log('should be here'); return stylingForSomeFiltered;}
+    if (checkerFunc && filter().status === buttonStatus) { return stylingForSomeFiltered;}
     else return stylingForNoneFiltered;
   }
 
