@@ -1,13 +1,8 @@
-import QueryKeyList from "./QueryKeyList";
-import ActiveQuery from "./ActiveQuery";
+import Tool from "./Tool";
 
-export default function SolidQueryDevtools()  {
+export default function SolidQueryDevtools() {
 
-    return (
-        <>
-            <QueryKeyList />
-            <ActiveQuery />
-        </>
-    )
-}
-
+  return (
+      <Tool />
+  );
+};

@@ -1,21 +1,39 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
+  "name": "solid-query-devkit",
+  "version": "1.0.36",
+  "description": "Solid Query Devkit",
+  "type": "module",
+  "main": "./src/SolidQueryDevtools.jsx",
   "scripts": {
-    "start": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/solid-query-devkit.git"
+  },
+  "keywords": [
+    "Solid",
+    "Query",
+    "Devkit"
+  ],
+  "author": "Squid",
   "license": "MIT",
-  "devDependencies": {
-    "vite": "^4.1.1",
-    "vite-plugin-solid": "^2.5.0"
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/solid-query-devkit/issues"
   },
+  "homepage": "https://github.com/oslabs-beta/solid-query-devkit#readme",
   "dependencies": {
-    "@tanstack/react-query-devtools": "^4.28.0",
-    "@tanstack/solid-query": "^4.27.0",
-    "solid-js": "^1.6.10"
+
+  },
+  "peerDependencies": {
+    "@tanstack/solid-query": "^4.29.1",
+    "path": "^0.12.7",
+    "solid-js": "^1.7.3"
+  },
+  "devDependencies": {
+    "vite": "^4.2.1",
+    "vite-plugin-solid": "^2.7.0"
   }
 }
