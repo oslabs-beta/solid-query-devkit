@@ -1,6 +1,6 @@
 import QueryKeyList from "./QueryKeyList";
-import ActiveQuery from "./ActiveQuery";
-import Header from "./Header";
+import { ActiveQuery } from "./ActiveQuery";
+import { Header } from "./Header";
 import { Match, Switch, useContext } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 import './index.css';
@@ -9,7 +9,7 @@ import { QueryContext } from "./Context";
 
 export default function Tool() {
 
-  const [ setShowModal, showModal, activeQuery ] = useContext(QueryContext);
+  const { setShowModal, showModal, activeQuery } = useContext(QueryContext);
 
   // IDEA: repurpose viewWidth signal to contain either an empty string at initialization,
   // or a string with a class/id identifier (e.g., "responsive")

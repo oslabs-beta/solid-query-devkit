@@ -5,7 +5,7 @@ import { getQueryStatus } from "./Helpers";
 
 export function Header() {
 
-  const { queries, setFilter, setSort, setShowModal, activeQuery } = useContext(QueryContext);
+  const { queries, filter, setFilter, sort, setSort, setShowModal, activeQuery } = useContext(QueryContext);
 
   //Style Variables for Status Backgrounds: 
   //Loading
@@ -92,7 +92,7 @@ export function Header() {
         <option value="last-updated" selected>Sort by Last Updated</option>
         <option value="hash">Sort by Query Hash</option>
       </select>
-      <button class="sqd-ascBtn" onClick={() =>setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
+      <button class="sqd-ascBtn" onClick={() => setSort({...sort(),reverse: !sort().reverse})}>{ sort().reverse ? '\u2191 Asc' : '\u2193 Dec'}</button>
       </div>
       </div>
     

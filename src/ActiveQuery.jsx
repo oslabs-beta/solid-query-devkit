@@ -2,10 +2,13 @@ import { OverviewData } from "./OverviewData";
 import { Explorer } from "./Explorer";
 import { QueryContext } from "./Context";
 import { useContext } from "solid-js";
+import { useQueryClient } from "@tanstack/solid-query";
 
 export function ActiveQuery() {
 
   const { activeQuery, setActiveQuery } = useContext(QueryContext);
+
+  const queryClient = useQueryClient()
 
   const queryFunctions = {
     refetch: () => {
