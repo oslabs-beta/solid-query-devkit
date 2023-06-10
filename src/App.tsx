@@ -4,10 +4,10 @@ import { createQuery } from '@tanstack/solid-query'
 import { For } from 'solid-js';
 import PokeName from './PokeName';
 import SolidQueryDevtools from './SolidQueryDevtools';
+import { JSX } from 'solid-js'
 
 
-
-function App() {
+function App(): JSX.Element {
   const query = createQuery(() => ['pokemonList'], 
   async () => {
     let data = await fetch('https://pokeapi.co/api/v2/pokemon/')
@@ -30,12 +30,11 @@ function App() {
     <>
     <ObjectComponent obj={testObj} key={"testObj"} level={0} />
      <For each={query.data}>
-         {(pokemon, i) =>
-        <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
-          }
+        {(pokemon, i) =>
+          <PokeName name={pokemon.name} url={pokemon.url} num={i() + 1}/>
+        }
       </For>
-        <SolidQueryDevtools />
-     
+      <SolidQueryDevtools />
     </>
   );
 }

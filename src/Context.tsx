@@ -1,13 +1,21 @@
 import { createContext, createSignal } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
+import type { JSX } from "solid-js";
+import type { QueryClient, Query } from "@tanstack/solid-query";
 
 export const QueryContext = createContext();
 
-export function QueryProvider (props) {
-  const queryClient = useQueryClient();
+type queryProvider = {
+  children: JSX.Element
+}
+
+type queryProviderPlus = queryProvider & JSX.Element
+
+export function QueryProvider (props: queryProviderPlus) {
+  const queryClient: QueryClient = useQueryClient();
 
   const [activeQuery, setActiveQuery] = createSignal();
-  const [queries, setQueries] = createSignal([]);
+  const [queries, setQueries] = createSignal<Query[]>([]);
   const [sort, setSort] = createSignal({type: 'last-updated', reverse: false});
   const [filter, setFilter] = createSignal({text: '', status: ''});
 
@@ -16,8 +24,9 @@ export function QueryProvider (props) {
 
 
   //subscribing to the query cache, which runs the function every time the queryCache updates 
-  queryClient.queryCache.subscribe(() => {
-    setQueries(() => [...queryClient.queryCache.queries]);
+  // TD changed queryCache to getQueryCache() and queries to getAll() --> prior were set to private and inaccessible in TypeScript
+  queryClient.getQueryCache().subscribe(() => {
+    setQueries(() => [...queryClient.getQueryCache().getAll()]);
     if (activeQuery()) {
       setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
     };
