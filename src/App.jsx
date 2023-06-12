@@ -7,7 +7,7 @@ import SolidQueryDevtools from './SolidQueryDevtools';
 import { JSX } from 'solid-js'
 
 
-function App(): JSX.Element {
+function App() {
   const query = createQuery(() => ['pokemonList'], 
   async () => {
     let data = await fetch('https://pokeapi.co/api/v2/pokemon/')

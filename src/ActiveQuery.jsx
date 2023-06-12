@@ -3,10 +3,10 @@ import { Explorer } from "./Explorer";
 import { QueryContext } from "./Context";
 import { useContext } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
-import type { JSX, Component } from 'solid-js';
+// import type { JSX, Component } from 'solid-js';
 
 
-export const ActiveQuery: Component = () => {
+export const ActiveQuery = () => {
 
   const { activeQuery, setActiveQuery } = useContext(QueryContext);
 
