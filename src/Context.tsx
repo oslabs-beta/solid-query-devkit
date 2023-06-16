@@ -11,7 +11,7 @@ type queryProvider = {
 
 type queryProviderPlus = queryProvider & JSX.Element
 
-export function QueryProvider (props: queryProviderPlus) {
+export function QueryProvider (props: queryProviderPlus): JSX.Element {
   const queryClient: QueryClient = useQueryClient();
 
   const [activeQuery, setActiveQuery] = createSignal<any>();
