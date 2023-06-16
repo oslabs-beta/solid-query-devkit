@@ -1,18 +1,8 @@
 import { Dynamic } from "solid-js/web";
 import { JSX } from 'solid-js' 
+import type { primitiveProps, styleObject, optionsType } from './types'
 
-type props = {
-  level: number,
-  key: string,
-  value: any,
-  type: string
-}
-
-export function Primitive(props: props): JSX.Element {
-
-  type styleObject = {
-    color: string
-  }
+export function Primitive(props: primitiveProps): JSX.Element {
 
   const style: styleObject = {
     color: 'rgba(170, 170, 170, 0.851)'
@@ -24,41 +14,32 @@ export function Primitive(props: props): JSX.Element {
     color: 'rgba(200, 0, 120, 0.651)'
   }
 
-  const Boolean = (props: props): JSX.Element =>  {
+  const Boolean = (props: primitiveProps): JSX.Element =>  {
     const boolean: string = props.value ? 'true' : 'false'
     // const {count, setCount} = useContext(QueryContext);
     return (
       <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>{boolean}</span></div>
     )
   }
-  const Number = (props: props): JSX.Element =>  {
+  const Number = (props: primitiveProps): JSX.Element =>  {
     return (
       <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>{parseInt(props.value)}</span></div>
     )
   }
-  const String = (props: props): JSX.Element =>  {
+  const String = (props: primitiveProps): JSX.Element =>  {
     return (
       <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={truthy}>"{props.value}"</span></div>
     )
   }
-  const Null = (props: props): JSX.Element => {
+  const Null = (props: primitiveProps): JSX.Element => {
     return (
       <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={falsey}>null</span></div>
     )
   }
-  const Undefined = (props: props): JSX.Element => {
+  const Undefined = (props: primitiveProps): JSX.Element => {
     return (
       <div style={`margin-left: ${props.level * 15}px`}><span style={style}>{props.key}: </span><span style={falsey}>undefined</span></div>
     )
-  }
-  
-  type optionsType = {
-    string: (props: props) => JSX.Element;
-    boolean: (props: props) => JSX.Element;
-    number: (props: props) => JSX.Element;
-    undefined: (props: props) => JSX.Element;
-    null: (props: props) => JSX.Element;
-    [key: string]: any
   }
 
   const options: optionsType = {
@@ -68,6 +49,7 @@ export function Primitive(props: props): JSX.Element {
     undefined: Undefined,
     null: Null
   }
+  
   return(
     <Dynamic component={options[props.type]} key={props.key} value={props.value} level={props.level} />
   )

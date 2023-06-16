@@ -1,9 +1,9 @@
-import { createSignal, Show, For, Switch, Match } from "solid-js";
+import { createSignal, Show, For, Switch, Match, JSX } from "solid-js";
 import { Primitive } from "./Primitive";
+import type { OCProps } from './types'
 
-
-export function ObjectComponent(props) {
-  const [enabled, setEnabled] = createSignal(false)
+export function ObjectComponent(props: OCProps): JSX.Element {
+  const [enabled, setEnabled] = createSignal<boolean>(false)
 
   return (
     <>

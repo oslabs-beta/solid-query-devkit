@@ -1,6 +1,8 @@
 import { ObjectComponent } from "./ObjectComponent"
+import { JSX } from 'solid-js';
+import type { explorerProps } from './types'
 
-export function Explorer(props)   {
+export function Explorer(props: explorerProps): JSX.Element {
   return (
     <>
       <div class="sqd-detailsHeader">
