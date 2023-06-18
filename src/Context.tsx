@@ -2,11 +2,11 @@ import { createContext, createSignal } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
 import type { JSX } from "solid-js";
 import type { QueryClient, Query } from "@tanstack/solid-query";
-import type { filter, queryProviderPlus, sort } from './types'
+import type { filter, queryProviderProps, sort } from './types'
 
 export const QueryContext = createContext();
 
-export function QueryProvider (props: queryProviderPlus): JSX.Element {
+export function QueryProvider (props: queryProviderProps): JSX.Element {
   const queryClient: QueryClient = useQueryClient();
 
   const [activeQuery, setActiveQuery] = createSignal<any>();

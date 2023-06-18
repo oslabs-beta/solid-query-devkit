@@ -13,7 +13,7 @@ export type queryProvider = {
   children: JSX.Element
 }
 
-export type queryProviderPlus = queryProvider & JSX.Element
+export type queryProviderProps = queryProvider & JSX.Element
 
 export type sort = {
   type: string, 
