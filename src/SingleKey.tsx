@@ -1,11 +1,13 @@
-import { useContext, createSignal } from "solid-js";
+import { useContext, createSignal, JSX } from "solid-js";
 import { QueryContext } from "./Context";
 import { getQueryStatus } from './Helpers'
+import type { singleKeyProps, backgroundColor, stylings } from "./types";
+import type { Query } from "@tanstack/solid-query";
 
-export default function SingleKey(props) {
+export default function SingleKey(props: singleKeyProps): JSX.Element {
 
   //Styles for observers box
-  const stylings = {
+  const stylings: stylings = {
     fresh: {"background-color": "green", "color": "white", "font-weight": "bold"},
     inactive: {"background-color": "rgb(63, 78, 96)", "color": "white", "font-weight": "bold"},
     stale: {"background-color": "rgb(255, 169, 8)", "color": "black", "font-weight": "bold"},
@@ -13,13 +15,13 @@ export default function SingleKey(props) {
     paused: {"background-color": "rgb(150, 71, 166)", "color": "white", "font-weight": "bold"},
   }
   
-  const { activeQuery, setActiveQuery, queries } = useContext(QueryContext);
+  const { activeQuery, setActiveQuery, queries } = useContext<any>(QueryContext);
 
   //signal to set style:
-  const [backgroundColor, setBackgroundColor] = createSignal('');
+  const [backgroundColor, setBackgroundColor] = createSignal<backgroundColor>({"background-color": ''});
   
   const query = () => {
-    return queries().find((query) => query.queryHash === props.key);
+    return queries().find((query: Query) => query.queryHash === props.key);
   }
   
   return (

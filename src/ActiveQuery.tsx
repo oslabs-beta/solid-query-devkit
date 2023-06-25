@@ -1,18 +1,19 @@
 import { OverviewData } from "./OverviewData";
 import { Explorer } from "./Explorer";
 import { QueryContext } from "./Context";
-import { useContext } from "solid-js";
+import { useContext, JSX } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
-// import type { JSX, Component } from 'solid-js';
+import type { QueryClient } from "@tanstack/solid-query";
+import type { queryFunctions } from "./types";
 
 
-export const ActiveQuery = () => {
+export const ActiveQuery = (): JSX.Element => {
 
-  const { activeQuery, setActiveQuery } = useContext(QueryContext);
+  const { activeQuery, setActiveQuery } = useContext<any>(QueryContext);
 
-  const queryClient = useQueryClient()
+  const queryClient: QueryClient = useQueryClient()
 
-  const queryFunctions = {
+  const queryFunctions: queryFunctions = {
     refetch: () => {
       queryClient.refetchQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
     },
