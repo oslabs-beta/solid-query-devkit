@@ -2,22 +2,17 @@ import { createContext, createSignal } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
 import type { JSX } from "solid-js";
 import type { QueryClient, Query } from "@tanstack/solid-query";
+import type { filter, queryProviderProps, sort } from './types'
 
 export const QueryContext = createContext();
 
-type queryProvider = {
-  children: JSX.Element
-}
-
-type queryProviderPlus = queryProvider & JSX.Element
-
-export function QueryProvider (props: queryProviderPlus) {
+export function QueryProvider (props: queryProviderProps): JSX.Element {
   const queryClient: QueryClient = useQueryClient();
 
   const [activeQuery, setActiveQuery] = createSignal<any>();
   const [queries, setQueries] = createSignal<Query[]>([]);
-  const [sort, setSort] = createSignal<{type: string, reverse: boolean}>({type: 'last-updated', reverse: false});
-  const [filter, setFilter] = createSignal<{text: string, status: string}>({text: '', status: ''});
+  const [sort, setSort] = createSignal<sort>({type: 'last-updated', reverse: false});
+  const [filter, setFilter] = createSignal<filter>({text: '', status: ''});
 
   //showData & showModal
   const [showModal, setShowModal] = createSignal<boolean>(false);
