@@ -19,10 +19,10 @@ export function QueryProvider (props: queryProviderProps): JSX.Element {
 
   //subscribing to the query cache, which runs the function every time the queryCache updates 
   // TD changed queryCache to getQueryCache() and queries to getAll() --> prior were private types and inaccessible in TypeScript
-  queryClient.getQueryCache().subscribe(() => {
+  queryClient.getQueryCache().subscribe((): void => {
     setQueries(() => [...queryClient.getQueryCache().getAll()]);
     if (activeQuery()) {
-      setActiveQuery({...queries().filter((query) => query.queryHash == activeQuery().queryHash)[0]});
+      setActiveQuery({...queries().filter((query: Query): boolean => query.queryHash == activeQuery().queryHash)[0]});
     };
   });
 
