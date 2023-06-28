@@ -20,13 +20,13 @@ export default function SingleKey(props: singleKeyProps): JSX.Element {
   //signal to set style:
   const [backgroundColor, setBackgroundColor] = createSignal<backgroundColor>({"background-color": ''});
   
-  const query = () => {
-    return queries().find((query: Query) => query.queryHash === props.key);
+  const query = (): Query => {
+    return queries().find((query: Query): boolean => query.queryHash === props.key);
   }
   
   return (
     <section class="sqd-queryKey">
-      <div class="sqd-observers" style={stylings[getQueryStatus(query())]}>{query().observers.length}</div>
+      <div class="sqd-observers" style={stylings[getQueryStatus(query())]}>{query().getObserversCount()}</div>
       <div id="sqd-singleKey" style={backgroundColor()} onClick={() => {
         setBackgroundColor({
           "background-color": 'rgba(13, 21, 32, 0.5)'
