@@ -9,9 +9,7 @@ export type filter = {
 }
 
 // Context.tsx
-export type queryProvider = {
-  children: JSX.Element
-}
+export type queryProvider = any;
 
 export type queryProviderProps = queryProvider & JSX.Element
 
@@ -64,3 +62,61 @@ export type statusStylesObj = {
   inactive: string,
   [key: string]: any
 }
+
+// SingleKey.tsx
+export type singleKeyProps = {
+  readonly key: string,
+  readonly index: number
+}
+
+export type backgroundColor = {
+  'background-color': string
+}
+
+type stylingObject = {
+  'background-color': string,
+  color: string,
+  'font-weight': string
+}
+
+export type stylings = {
+  fresh: stylingObject,
+  inactive: stylingObject,
+  stale: stylingObject,
+  fetching: stylingObject,
+  paused: stylingObject,
+  [key: string]: any
+}
+
+// ActiveQuery.tsx
+export type queryFunctions = {
+  refetch: () => void,
+  invalidate: () => Promise<void>,
+  reset: () => void,
+  remove: () => void
+}
+
+// Header.tsx
+export type statusStyle = {
+  'background-color': string,
+  color?: string,
+  border?: string,
+  opacity?: string
+};
+
+export type queryStatusesType = {
+  fresh: number,
+  fetching: number,
+  paused: number,
+  stale: number,
+  inactive: number,
+  [key: string]: any
+};
+
+export type styler = 
+(queryCount: number,
+buttonStatus: string,
+stylingForSome: statusStyle,
+stylingForNone: statusStyle,
+stylingForSomeFiltered: statusStyle,
+stylingForNoneFiltered: statusStyle) => statusStyle;

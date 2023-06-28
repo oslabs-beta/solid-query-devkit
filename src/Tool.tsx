@@ -1,22 +1,22 @@
 import QueryKeyList from "./QueryKeyList";
 import { ActiveQuery } from "./ActiveQuery";
 import { Header } from "./Header";
-import { Match, Switch, useContext } from "solid-js";
+import { Match, Switch, useContext, JSX, Show } from "solid-js";
 import logo from "./assets/SquidLogo.png";
 import './index.css';
 import { QueryContext } from "./Context";
 
 
-export default function Tool() {
+export default function Tool(): JSX.Element {
 
-  const { setShowModal, showModal, activeQuery } = useContext(QueryContext);
+  const { setShowModal, showModal, activeQuery } = useContext<any>(QueryContext);
 
   // IDEA: repurpose viewWidth signal to contain either an empty string at initialization,
   // or a string with a class/id identifier (e.g., "responsive")
   // whatever that signal is will be added via brackets as an attribute on the left container div,
   // but only conditionally, based on the create effect below. 
 
-  const viewWidth = () => activeQuery() ? 'sqd-narrow' : 'sqd-wide'
+  const viewWidth = (): string => activeQuery() ? 'sqd-narrow' : 'sqd-wide'
 
   return (
     <>

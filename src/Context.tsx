@@ -1,6 +1,5 @@
-import { createContext, createSignal } from "solid-js";
+import { createContext, createSignal, JSX } from "solid-js";
 import { useQueryClient } from "@tanstack/solid-query";
-import type { JSX } from "solid-js";
 import type { QueryClient, Query } from "@tanstack/solid-query";
 import type { filter, queryProviderProps, sort } from './types'
 

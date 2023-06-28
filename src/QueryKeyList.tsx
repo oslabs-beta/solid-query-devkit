@@ -1,13 +1,14 @@
 import SingleKey from './SingleKey';
-import { For, useContext } from 'solid-js';
+import { For, useContext, JSX } from 'solid-js';
 import { QueryContext } from "./Context";
 import {sortQueries, filterQueries} from './Helpers'
+import type { Query } from '@tanstack/solid-query'
 
-export default function QueryKeyList() {
+export default function QueryKeyList(): JSX.Element {
 
-  const { queries, sort, filter } = useContext(QueryContext);
+  const { queries, sort, filter } = useContext<any>(QueryContext);
 
-    const derivedQueries = () => {
+    const derivedQueries = (): Query[] => {
       return sort().reverse ? 
       filterQueries(sortQueries(queries(), sort().type), filter()).reverse()
       : filterQueries(sortQueries(queries(), sort().type), filter())
