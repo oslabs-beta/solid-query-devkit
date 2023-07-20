@@ -6,10 +6,10 @@ export function Explorer(props: explorerProps): JSX.Element {
   return (
     <>
       <div class="sqd-detailsHeader">
-        <h3>{props.name}</h3>
+        <h3 data-testid="name-head">{props.name}</h3>
       </div>
-      <div class="sqd-object-component">
-        <ObjectComponent obj={props.obj || {}} key={props.key} level={1}/>
+      <div class="sqd-object-component" data-testid="ocdiv">
+        <ObjectComponent obj={props.obj || {}} key={props.key} level={1} data-testid="oc"/>
       </div>
     </>
   )

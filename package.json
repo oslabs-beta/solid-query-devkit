@@ -25,7 +25,13 @@
   },
   "homepage": "https://github.com/oslabs-beta/solid-query-devkit#readme",
   "devDependencies": {
-    "jest": "^29.5.0",
+    "@solidjs/testing-library": "^0.8.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.5.3",
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1",
+    "ts-jest": "^29.1.1",
     "vite": "^4.1.1",
     "vite-plugin-solid": "^2.5.0"
   },
@@ -34,5 +40,25 @@
     "@tanstack/solid-query": "^4.29.1",
     "solid-js": "^1.6.10",
     "solid-start": "^0.2.26"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.tsx?$": ["ts-jest", {
+      "tsconfig": "tsconfig.json",
+      "babelConfig": {
+        "presets": [
+          "babel-preset-solid",
+          "@babel/preset-env"
+          ]
+        }
+      }]
+    },
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "solid-js/web": "<rootDir>/node_modules/solid-js/web/dist/web.cjs",
+      "solid-js": "<rootDir>/node_modules/solid-js/dist/solid.cjs",
+      ".*\\.(css|jpe?g|png|svg)$": "<rootDir>/.empty.js"
+    }
   }
 }

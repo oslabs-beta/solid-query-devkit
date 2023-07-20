@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "jsxImportSource": "solid-js",
     "jsx": "preserve",
-    "types": ["solid-start/env"],
+    "types": ["solid-start/env", "jest"],
     "baseUrl": "./",
     "paths": {
       "~/*": ["./src/*"]
@@ -15,5 +15,5 @@
     "isolatedModules": true,
     "noImplicitAny": true,
     "strict": true,
-  }
+  },
 }
