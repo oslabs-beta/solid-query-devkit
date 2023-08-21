@@ -5,16 +5,16 @@ export function sortQueries(queries: Query[], sortMethod: string): Query[] {
   //sort queries by last updated
   if (sortMethod === 'last-updated') {
     return queries.sort((a: Query, b: Query): any => {
-      const nameA = a.state.dataUpdatedAt
-      const nameB = b.state.dataUpdatedAt
+      const nameA: number = a.state.dataUpdatedAt
+      const nameB: number = b.state.dataUpdatedAt
       if (nameA > nameB) return -1;
       if (nameA < nameB) return 1;
     })
   } else {
   //sort queries by query hash
     return queries.sort((a: Query, b: Query): any => {
-      const nameA = a.queryHash.toUpperCase()
-      const nameB = b.queryHash.toUpperCase()
+      const nameA: string = a.queryHash.toUpperCase()
+      const nameB: string = b.queryHash.toUpperCase()
       if (nameA > nameB) return 1;
       if (nameA < nameB) return -1;
     })
@@ -31,7 +31,7 @@ export function getQueryStatus(query: Query): string {
 }
 
 export function filterQueries(queries: Query[], filter: filter): Query[] {
-  return queries.filter((query) =>  {
+  return queries.filter((query: Query): boolean =>  {
     if (filter.status) {
       return query.queryHash.toLowerCase().includes(filter.text) && getQueryStatus(query) === filter.status
     } else {

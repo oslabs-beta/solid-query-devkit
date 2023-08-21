@@ -14,21 +14,21 @@ export const ActiveQuery = (): JSX.Element => {
   const queryClient: QueryClient = useQueryClient()
 
   const queryFunctions: queryFunctions = {
-    refetch: () => {
+    refetch: (): void => {
       queryClient.refetchQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
     },
-    invalidate: async () => {
+    invalidate: async (): Promise<void> => {
       await queryClient.invalidateQueries({
         queryKey: JSON.parse(activeQuery().queryHash),
         exact: true,
         refetchType: 'active',
       });
     },
-    reset: () => {
+    reset: (): void => {
       queryClient.resetQueries({ queryKey: JSON.parse(activeQuery().queryHash) });
     },
-    remove: () => {
-      const hash = JSON.parse(activeQuery().queryHash)
+    remove: (): void => {
+      const hash: any = JSON.parse(activeQuery().queryHash)
       setActiveQuery();
       queryClient.removeQueries({ queryKey: hash, exact: true });
     }
